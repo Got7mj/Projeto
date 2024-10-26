@@ -39,8 +39,8 @@ char menu_espetaculo(void) {
     printf("///            0. Voltar ao menu anterior                                   ///\n");
     printf("///                                                                         ///\n");
     printf("///            Escolha a opção desejada:          ");
-	scanf("%c", &op);
-	getchar();
+    scanf("%c", &op);
+    getchar();
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
