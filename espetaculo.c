@@ -39,8 +39,8 @@ char menu_espetaculo(void) {
     printf("///            0. Voltar ao menu anterior                                   ///\n");
     printf("///                                                                         ///\n");
     printf("///            Escolha a opção desejada:          ");
-	scanf("%c", &op);
-	getchar();
+    scanf("%c", &op);
+    getchar();
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -142,7 +142,7 @@ void tela_excluir_espetaculo(void) {
 }
 
 
-void tela_cadastrar_espetaculo(void) {
+void cadastrar_espetaculo(void) {
 	// função ainda em desenvolvimento
 	// exibe a tela apenas para testes
 	tela_cadastrar_espetaculo();
