@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "artista.h"
 #include "biblioteca.h"
 
@@ -11,13 +12,13 @@ void modulo_artista(void) {
     do {
         opcao = menu_artista();
         switch(opcao) {
-            case '1': 	tela_cadastrar_artista();
+            case '1': 	cadastrar_artista();
                         break;
-            case '2': 	tela_consultar_artista();
+            case '2': 	consultar_artista();
                         break;
-            case '3': 	tela_alterar_artista();
+            case '3': 	alterar_artista();
                         break;
-            case '4': 	tela_excluir_artista();
+            case '4': 	excluir_artista();
                         break;
         } 		
     } while (opcao != '0');
@@ -26,7 +27,7 @@ void modulo_artista(void) {
 
 char menu_artista(void) {
     char op;
-    system("clear||cls");
+    limpaTela();
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
@@ -46,8 +47,7 @@ char menu_artista(void) {
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    printf("\t\t\t<<< ... Aguarde ... >>>\n");
+    printf("\n");    
     delay(1);
     return op;
 }
@@ -59,7 +59,7 @@ void tela_cadastrar_artista(void) {
     char email[30];
     char celular[12];
     char cargo[30];
-    system("clear||cls");
+    limpaTela();
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
@@ -67,33 +67,36 @@ void tela_cadastrar_artista(void) {
     printf("///            = = = = = = = = Cadastrar Artista = = = = = = =              ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
+do {
     printf("///            ID (apenas números):    ");
-    scanf("%[0-9]", id);
+    scanf("%[^\n]", id);
     getchar();
+} while (!validaId(id));    
     printf("///            Nome completo:          ");
     scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome);
     getchar();
     printf("///            E-mail:                 ");
     scanf("%[A-Za-z0-9@._]", email);
     getchar();
-    printf("///            Celular (apenas números):    ");
-    scanf("%[0-9]", celular);
-    getchar();
+do {
+	    printf("///           Celular  (apenas números com DDD): ");
+	    scanf("%[^\n]", celular);
+	    getchar();
+} while (!validaCelular(celular));
     printf("///            Cargo:                  ");
     scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", cargo);
     getchar();
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    printf("\t\t\t<<< ... Aguarde ... >>>\n");
+    printf("\n");    
     delay(1);
 }
 
 
 void tela_consultar_artista(void) {
     char id[12];
-    system("clear||cls");
+     limpaTela();
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
@@ -107,15 +110,14 @@ void tela_consultar_artista(void) {
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    printf("\t\t\t<<< ... Aguarde ... >>>\n");
+    printf("\n");    
     delay(1);
 }
 
 
 void tela_alterar_artista(void) {
     char id[12];
-    system("clear||cls");
+     limpaTela();
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
@@ -130,14 +132,13 @@ void tela_alterar_artista(void) {
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
-    printf("\t\t\t<<< ... Aguarde ... >>>\n");
     delay(1);
 }
 
 
 void tela_excluir_artista(void) {
      char id[12];
-    system("clear||cls");
+     limpaTela();
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
@@ -152,6 +153,79 @@ void tela_excluir_artista(void) {
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
-    printf("\t\t\t<<< ... Aguarde ... >>>\n");
     delay(1);
+}
+
+
+void cadastrar_artista(void) {
+	// função ainda em desenvolvimento
+	// exibe a tela apenas para testes
+	tela_cadastrar_artista();
+}
+void consultar_artista(void) {
+	// função ainda em desenvolvimento
+	// exibe a tela apenas para testes
+	tela_consultar_espetaculo();
+}
+void alterar_artista(void) {
+	// função ainda em desenvolvimento
+	// exibe a tela apenas para testes
+	tela_alterar_espetaculo();
+}
+void excluir_artista(void) {
+	// função ainda em desenvolvimento
+	// exibe a tela apenas para testes
+	tela_excluir_artista();
+}
+
+
+
+///
+/// Funções de validação - serão transferidas para o módulo biblioteca.c
+///
+
+int validaID(char id[]) {
+    int tam;
+
+    tam = strlen(id);
+    if (tam < 10 || tam > 11) {
+        return 0;
+    }
+    for (int i = 0; i < tam; i++) {
+        if (!Digito(id[i])) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+
+int validaNome(char nome[]) {
+
+}
+
+
+int validaEmail(char email[]) {
+
+}
+
+
+int validaCelular(char cel[]) {
+    int tam;
+
+    tam = strlen(cel);
+    if (tam != 11) {
+        return 0;
+    }
+    for (int i = 0; i < tam; i++) {
+        if (!ehDigito(cel[i])) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+
+int validaCargo(char cargo[]) {
+
 }
