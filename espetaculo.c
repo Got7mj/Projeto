@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "espetaculo.h"
 #include "biblioteca.h"
 
@@ -24,7 +25,7 @@ void modulo_espetaculo(void) {
 
 char menu_espetaculo(void) {
     char op;
-    system("clear||cls");
+    limpaTela();
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
@@ -54,7 +55,7 @@ void tela_cadastrar_espetaculo(void) {
     char id[12];
     char data[12];
     char horario[9];
-    system("clear||cls");
+    limpaTela();
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
@@ -62,12 +63,16 @@ void tela_cadastrar_espetaculo(void) {
     printf("///            = = = = = = = Cadastrar Espetáculo = = = = = =               ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
-    printf("///            ID (apenas números):    ");
-    scanf("%[0-9]", id);
-    getchar();
+do {
+     printf("///            ID (apenas números):    ");
+     scanf("%[^\n]", id);
+     getchar();
+} while (!validaId(id));
+do {	
     printf("///            Data (dd/mm/aaaa):      ");
-    scanf("%[0-9/]", data);
+    scanf("%[^\n]", data);
     getchar();
+} while (!validaData(data));	
     printf("///            Horário (hh/mm/ss):     ");
     scanf("%[0-9:]", horario);
     getchar();
@@ -161,4 +166,45 @@ void excluir_espetaculo(void) {
 	// função ainda em desenvolvimento
 	// exibe a tela apenas para testes
 	tela_excluir_espetaculo();
+}
+
+
+///
+/// Funções de validação - serão transferidas para o módulo biblioteca.c
+///
+
+int validaID(char id[]) {
+    int tam;
+
+    tam = strlen(id);
+    if (tam < 10 || tam > 11) {
+        return 0;
+    }
+    for (int i = 0; i < tam; i++) {
+        if (!Digito(id[i])) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+
+int validaData(char data[]) {
+    int tam;
+
+    tam = strlen(data);
+    if (tam != 11) {
+        return 0;
+    }
+    for (int i = 0; i < tam; i++) {
+        if (!Digito(data[i])) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+
+int validaHorario(char horario[]) {
+
 }
