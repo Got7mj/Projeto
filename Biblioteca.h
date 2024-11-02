@@ -1,2 +1,9 @@
 void delay(int);
 void limpaTela(void);
+int Digito(char);
+int Letra(char);
+int validarNome(char*);
+int validarEmail(char*);
+int validarCelular(char*);
+int validarID(char*);
+int validarCargo(char*);
