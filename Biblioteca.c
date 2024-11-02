@@ -1,6 +1,8 @@
 #include <time.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
+#define MAX_CARGO_LENGTH 100
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Faz uma pausa por n segundos, com n sendo passado como parâmetro
@@ -140,4 +142,30 @@ int validarID(char* id[]) {
         }
     }
     return 1;
+}
+
+
+///////////// Valida Cargo ////////////////////////// 
+// Função para verificar se o cargo contém apenas caracteres válidos
+int validarCargo(const char* cargo) {
+    // Verifica se o cargo não está vazio
+    if (cargo == NULL || strlen(cargo) == 0) {
+        return 0; // Inválido
+    }
+    
+    // Verifica se o comprimento do cargo é aceitável
+    if (strlen(cargo) > MAX_CARGO_LENGTH) {
+        return 0; // Inválido
+    }
+
+    // Verifica se cada caractere do cargo é válido
+    for (int i = 0; cargo[i] != '\0'; i++) {
+        if (!isalpha(cargo[i]) && !isspace(cargo[i]) && 
+            cargo[i] != '-' && cargo[i] != '.' && cargo[i] != '_') {
+            return 0; // Caractere inválido
+        }
+    }
+
+    // Se todas as verificações passarem, o cargo é válido
+    return 1; // Válido
 }
