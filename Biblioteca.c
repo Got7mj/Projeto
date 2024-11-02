@@ -109,7 +109,7 @@ int validarEmail(char* email) {
 
 
 /////////////////// Valida Celular ///////////////////////
-int validaCelular(char* celular[]) {
+int validarCelular(char* celular[]) {
     int tam;
     tam = strlen(celular);
     if (tam != 11) {
@@ -127,7 +127,7 @@ int validaCelular(char* celular[]) {
 ///////////// Valida Id ////////////////////////// 
  
 
-int validaID(char* id[]) {
+int validarID(char* id[]) {
     int tam;
 
     tam = strlen(id);
