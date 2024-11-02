@@ -63,16 +63,12 @@ void tela_cadastrar_espetaculo(void) {
     printf("///            = = = = = = = Cadastrar Espetáculo = = = = = =               ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
-do {
-     printf("///            ID (apenas números):    ");
-     scanf("%[^\n]", id);
-     getchar();
-} while (!validaId(id));
-do {	
-    printf("///            Data (dd/mm/aaaa):      ");
-    scanf("%[^\n]", data);
+    printf("///            ID (apenas números):    ");
+    scanf("%[0-9]", id);
     getchar();
-} while (!validaData(data));	
+    printf("///            Data (dd/mm/aaaa):      ");
+    scanf("%[0-9/]", data);
+    getchar();
     printf("///            Horário (hh/mm/ss):     ");
     scanf("%[0-9:]", horario);
     getchar();
@@ -166,45 +162,4 @@ void excluir_espetaculo(void) {
 	// função ainda em desenvolvimento
 	// exibe a tela apenas para testes
 	tela_excluir_espetaculo();
-}
-
-
-///
-/// Funções de validação - serão transferidas para o módulo biblioteca.c
-///
-
-int validaID(char id[]) {
-    int tam;
-
-    tam = strlen(id);
-    if (tam < 10 || tam > 11) {
-        return 0;
-    }
-    for (int i = 0; i < tam; i++) {
-        if (!Digito(id[i])) {
-            return 0;
-        }
-    }
-    return 1;
-}
-
-
-int validaData(char data[]) {
-    int tam;
-
-    tam = strlen(data);
-    if (tam != 11) {
-        return 0;
-    }
-    for (int i = 0; i < tam; i++) {
-        if (!Digito(data[i])) {
-            return 0;
-        }
-    }
-    return 1;
-}
-
-
-int validaHorario(char horario[]) {
-
 }
