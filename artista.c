@@ -165,12 +165,12 @@ void cadastrar_artista(void) {
 void consultar_artista(void) {
 	// função ainda em desenvolvimento
 	// exibe a tela apenas para testes
-	tela_consultar_espetaculo();
+	tela_consultar_artista();
 }
 void alterar_artista(void) {
 	// função ainda em desenvolvimento
 	// exibe a tela apenas para testes
-	tela_alterar_espetaculo();
+	tela_alterar_artista();
 }
 void excluir_artista(void) {
 	// função ainda em desenvolvimento
