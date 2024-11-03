@@ -1,8 +1,8 @@
 #include <time.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
-#define MAX_CARGO_LENGTH 100
+
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Faz uma pausa por n segundos, com n sendo passado como parâmetro
@@ -126,10 +126,95 @@ int validarCelular(char* celular[]) {
 }/// Autor: https://github.com/rauan-meirelles
 
 
-///////////// Valida Id ////////////////////////// 
- 
+//////////// Função para verificar se um ano é bissexto ///////////////////
+/// Retorna 1 se ano for bissexto e retorna 0 caso contrário
+///
+int Bissexto(int ano) {
+  if ((ano % 4 == 0) && (ano % 100 != 0)) {
+    return 1;
+  } else if (ano % 400 == 0) {
+    return 1;
+  } else {
+    return 0;
+  }
+}/// Autor: https://github.com/rauan-meirelles
 
-int validarID(char* id[]) {
+
+///////////////////////////////////////////////////////////////////////////////
+/// Retorna 1 se dia, mes e ano correspondem a uma data válida, inclusive
+/// em anos bissextos, ou retorna 0 caso contrário
+///
+int Data(int dd, int mm, int aa) {
+  int maiorDia;
+  if (aa < 0 || mm < 1 || mm > 12)
+    return 0;
+  if (mm == 2) {
+    if (Bissexto(aa)) 
+      maiorDia = 29;
+    else
+      maiorDia = 28;
+  } else if (mm == 4 || mm == 6 || mm == 9 || mm == 11) {
+    maiorDia = 30;
+  } else
+    maiorDia = 31;
+  if (dd < 1 || dd > maiorDia)
+    return 0;
+  return 1;
+}// Autor: https://github.com/rauan-meirelles
+
+
+///////////////// Validar Data ///////////////////////////////////////
+/// Retorna 1 se string recebido corresponder a uma data válida (apenas dígitos
+/// e no formato: ddmmaaaa) ou retorna 0 caso contrário
+///
+int validarData(char* data) {
+  int tam, dia, mes, ano;
+  tam = strlen(data);
+  if (tam != 8) {
+    return 0;
+  }
+  for (int i = 0; i < tam; i++) {
+    if (!Digito(data[i])) {
+      return 0;
+    }
+  }
+  dia = (data[0] - '0') * 10 + (data[1] - '0');
+  mes = (data[2] - '0') * 10 + (data[3] - '0');
+  ano = (data[4] - '0') * 1000 + (data[5] - '0') * 100 + 
+        (data[6] - '0') * 10 + (data[7] - '0');
+  if (!Data(dia, mes, ano)) {
+    return 0;
+  }
+  return 1;
+}// Autor: https://github.com/rauan-meirelles
+
+
+/////// Função para validar uma data de nascimento////////
+int validarNasc(char* dataNasc) {
+    if (!validarData(dataNasc)) {
+        return 0; // Data inválida
+    }
+
+    // Extraindo o ano da data
+    int ano = (dataNasc[4] - '0') * 1000 + (dataNasc[5] - '0') * 100 +
+              (dataNasc[6] - '0') * 10 + (dataNasc[7] - '0');
+
+    // Obtém a data atual
+    time_t t = time(NULL);
+    struct tm *now = localtime(&t);
+    int anoAtual = now->tm_year + 1900;
+
+    // Verifica se a data de nascimento é válida (não pode ser futura)
+    if (ano > anoAtual) {
+        return 0; // Data de nascimento não pode ser futura
+    }
+
+    return 1; // Data de nascimento válida
+}// Autor: https://github.com/rauan-meirelles
+
+
+///////////// Valida Id ////////////////////////// 
+ int validarID(char* id[]) {
     int tam;
 
     tam = strlen(id);
@@ -146,26 +231,63 @@ int validarID(char* id[]) {
 
 
 ///////////// Valida Cargo ////////////////////////// 
-// Função para verificar se o cargo contém apenas caracteres válidos
-int validarCargo(const char* cargo) {
-    // Verifica se o cargo não está vazio
-    if (cargo == NULL || strlen(cargo) == 0) {
-        return 0; // Inválido
-    }
-    
-    // Verifica se o comprimento do cargo é aceitável
-    if (strlen(cargo) > MAX_CARGO_LENGTH) {
-        return 0; // Inválido
-    }
+// Função para validar o nome de um cargo
 
-    // Verifica se cada caractere do cargo é válido
+int validarCargo(char* cargo) {
+    // Verifica se o cargo não é nulo ou vazio
+    if (cargo == NULL || strlen(cargo) == 0) {
+        return 0; // Cargo inválido
+    }
+    // Verifica o comprimento máximo (por exemplo, 27 caracteres)
+    if (strlen(cargo) > 27) {
+        return 0; 
+    }
+    // Verifica se contém caracteres inválidos (exemplo: números ou caracteres especiais)
     for (int i = 0; cargo[i] != '\0'; i++) {
-        if (!isalpha(cargo[i]) && !isspace(cargo[i]) && 
-            cargo[i] != '-' && cargo[i] != '.' && cargo[i] != '_') {
-            return 0; // Caractere inválido
+        if (!Letra(cargo[i]) && cargo[i] != ' ') {
+            return 0; // Caractere inválido encontrado
         }
     }
+    return 1; // Cargo válido
+}
 
-    // Se todas as verificações passarem, o cargo é válido
-    return 1; // Válido
+
+//////// Função para validar horário no formato hh:mm///////
+
+int validarHorario(char* horario) {
+    int hh, mm;
+    if (strlen(horario) != 5 || horario[2] != ':') {
+        return 0; // Formato inválido
+    }
+    hh = (horario[0] - '0') * 10 + (horario[1] - '0');
+    mm = (horario[3] - '0') * 10 + (horario[4] - '0');
+    if (hh < 0 || hh > 23 || mm < 0 || mm > 59) {
+        return 0; // Horário fora do intervalo
+    }
+    return 1; // Horário válido
+}
+
+
+////// Função para validar preço/////////////
+int validarPreco(const char* preco) {
+    char* end;
+    double valor = strtod(preco, &end);
+    // Verifica se o valor é positivo e se não há caracteres inválidos
+    if (valor < 0 || *end != '\0') {
+        return 0; // Preço inválido
+    }
+    // Verifica se tem no máximo duas casas decimais
+    char* ponto = strchr(preco, '.');
+    if (ponto) {
+        if (strlen(ponto + 1) > 2) {
+            return 0; // Mais de duas casas decimais
+        }
+    }
+    return 1; // Preço válido
+}
+
+
+/////// Função para validar quantidade///////////
+int validarQuantidade(int quantidade) {
+    return quantidade >= 0; 
 }
