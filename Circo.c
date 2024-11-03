@@ -188,7 +188,7 @@ void tela_cadastrar_artista(void) {
     char nome[51];    
     char email[30];
     char celular[12];
-    char cargo[30];
+    char cargo[20];
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
