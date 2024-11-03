@@ -10,11 +10,6 @@ void cadastrar_artista(void);
 void consultar_artista(void);
 void alterar_artista(void);
 void excluir_artista(void);
-
-///
-/// Funções de validação - serão transferidas para o módulo biblioteca.c
-///
-
 int validaId(char []);
 int validaNome(char []);
 int validaEmail(char []);
