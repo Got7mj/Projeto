@@ -262,9 +262,9 @@ int validarHorario(char* horario) {
     hh = (horario[0] - '0') * 10 + (horario[1] - '0');
     mm = (horario[3] - '0') * 10 + (horario[4] - '0');
     if (hh < 0 || hh > 23 || mm < 0 || mm > 59) {
-        return 0; // Horário fora do intervalo
+        return 0; 
     }
-    return 1; // Horário válido
+    return 1; 
 }
 
 
