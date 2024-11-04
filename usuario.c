@@ -71,21 +71,27 @@ do {
     printf("///            ID (apenas números):    ");
     scanf("%[^\n]", id);
     getchar();
-} while (!validaId(id));    
-    printf("///            Nome completo:          ");
-    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome);
-    getchar();
-    printf("///            E-mail:                 ");
-    scanf("%[A-Za-z0-9@._]", email);
-    getchar();
+} while (!validarId(id));
 do {
-	    printf("///           Celular  (apenas números com DDD): ");
-	    scanf("%[^\n]", celular);
-	    getchar();
-} while (!validaCelular(celular));
-    printf("///           Data de Nascimento (dd/mm/aaaa):  ");
-	  scanf("%[0-9/]", nasc);
+    printf("///            Nome completo:          ");
+    scanf("%[^\n]", nome);
     getchar();
+} while (!validarNome(nome));
+do {
+    printf("///            E-mail:                 ");
+    scanf("%[^\n]", email);
+    getchar();
+} while (!validarEmail(email));
+do {
+    printf("///           Celular  (apenas números com DDD): ");
+    scanf("%[^\n]", celular);
+    getchar();
+} while (!validarCelular(celular));
+do {
+    printf("///           Data de Nascimento (dd/mm/aaaa):  ");
+    scanf("%[^\n]", nasc);
+    getchar();
+} while (!validarNasc(nasc));	
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
