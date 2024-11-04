@@ -4,6 +4,7 @@ int Digito(char);
 int Letra(char);
 int validarNome(char*);
 int caracteresEmail(char);
+int validarEmail(char*);
 int validarCelular(char*);
 int Bissexto(int);
 int Data(int, int, int);
