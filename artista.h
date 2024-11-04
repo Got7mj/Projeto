@@ -10,8 +10,3 @@ void cadastrar_artista(void);
 void consultar_artista(void);
 void alterar_artista(void);
 void excluir_artista(void);
-int validarId(char []);
-int validarNome(char []);
-int validarEmail(char []);
-int validarCelular(char []);
-int validarCargo(char []);
