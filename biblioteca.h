@@ -1,7 +1,7 @@
 void delay(int);
 void limpaTela(void);
 int Digito(char);
-int Letra(char);
+int letra(char);
 int validarNome(char*);
 int caracteresEmail(char);
 int validarEmail(char*);
