@@ -71,7 +71,7 @@ do {
     printf("///            ID (apenas números):    ");
     scanf("%[^\n]", id);
     getchar();
-} while (!validaId(id));    
+} while (!validarID(id));    
     printf("///            Nome completo:          ");
     scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome);
     getchar();
@@ -82,7 +82,7 @@ do {
 	    printf("///           Celular  (apenas números com DDD): ");
 	    scanf("%[^\n]", celular);
 	    getchar();
-} while (!validaCelular(celular));
+} while (!validarCelular(celular));
     printf("///            Cargo:                  ");
     scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", cargo);
     getchar();
