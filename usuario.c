@@ -71,7 +71,7 @@ do {
     printf("///            ID (apenas números):    ");
     scanf("%[^\n]", id);
     getchar();
-} while (!validarId(id));
+} while (!validarID(id));
 do {
     printf("///            Nome completo:          ");
     scanf("%[^\n]", nome);
