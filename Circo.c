@@ -30,7 +30,7 @@ void delay(int);
 int main(void) {
     char opcao;
     do {
-        opcao = telaPrincipal();
+        opcao = tela_principal();
         switch(opcao) {
             case '1':   modulo_artista();
                         break;
@@ -40,8 +40,8 @@ int main(void) {
                         break;
             case '4':   // Módulo Relatórios
                         break;
-            case '5':   telaSobre();
-                        telaEquipe();
+            case '5':   tela_sobre();
+                        tela_equipe();
                         break;
         } 	
     } while (opcao != '0');
