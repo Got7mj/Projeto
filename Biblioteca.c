@@ -6,23 +6,22 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Faz uma pausa por n segundos, com n sendo passado como parâmetro
-///
+///Autor: https://github.com/rauan-meirelles
 void delay(int segundos) {
   int tempo = 1000 * segundos;
   clock_t inicio = clock();
   while (clock() < inicio + tempo) {
     // não faz nada, apenas gasta tempo
   }
-} /// Autor: https://github.com/rauan-meirelles
+}  
 
 
 ///////// Limpa a tela//////////////
-
+// Autor: https://github.com/rauan-meirelles
 void limpaTela(void) {
-  if (system("clear") {  
-	
+  if (system("clear")) {  	
   }
-} /// Autor: https://github.com/rauan-meirelles
+} 
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -41,7 +40,7 @@ int Digito(char c) {
 /// Retorna 1 se o caractere recebido for uma letra alfabético 
 /// (entre 'A' e 'Z' ou 'a' e 'z') ou retorna 0 caso contrário
 ///
-int Letra(char c) {
+int letra(char c) {
   if (c >= 'A' && c <= 'Z') {
     return 1;
   } else if (c >= 'a' && c <= 'z') {
@@ -58,7 +57,7 @@ int Letra(char c) {
 ///
 int validarNome(char* nome) {
   for (int i=0; nome[i]!='\0'; i++) {
-    if (!Letra(nome[i])) {
+    if (!letra(nome[i])) {
       return 0;
     }
   }
@@ -90,7 +89,7 @@ int validarEmail(char* email) {
         }
     for (i = 0; email[i] != '\0'; i++) {
         // verifica se o email contém apenas os caracteres válidos
-        if (!caracteres_email(email[i])) {
+        if (!caracteresEmail(email[i])) {
             return 0;
         }
         // verificando quantidade de '@' e '.' no email
@@ -111,19 +110,18 @@ int validarEmail(char* email) {
 
 
 /////////////////// Valida Celular ///////////////////////
-int validarCelular(char* celular[]) {
+/// Autor: https://github.com/rauan-meirelles
+
+void validarCelular(char **celular, int tamanho) {
     int tam;
-    tam = strlen(celular);
-    if (tam != 11) {
-        return 0;
-    }
-    for (int i = 0; i < tam; i++) {
-        if (!Digito(celular[i])) {
-            return 0;
+    for (int i = 0; i < tamanho; i++) {
+        tam = strlen(celular[i]);
+        for (int j = 0; j < tam; j++) {
+            if (!Digito(celular[i][j])) {
+            }
         }
     }
-    return 1;
-}/// Autor: https://github.com/rauan-meirelles
+}
 
 
 //////////// Função para verificar se um ano é bissexto ///////////////////
@@ -214,19 +212,13 @@ int validarNasc(char* dataNasc) {
 
 
 ///////////// Valida Id ////////////////////////// 
- int validarID(char* id[]) {
+ void validarID(char **id, int tamanho) {
     int tam;
-
-    tam = strlen(id);
-    if (tam < 10 || tam > 11) {
-        return 0;
-    }
-    for (int i = 0; i < tam; i++) {
-        if (!Digito(id[i])) {
-            return 0;
+    for (int i = 0; i < tamanho; i++) {  // Declarando 'i' aqui dentro do for
+        tam = strlen(id[i]);  // Agora 'i' está declarado e a função vai funcionar
+        if (!Digito(id[i][0])) {  // Verifica o primeiro caractere do ID
         }
     }
-    return 1;
 }
 
 
@@ -244,7 +236,7 @@ int validarCargo(char* cargo) {
     }
     // Verifica se contém caracteres inválidos (exemplo: números ou caracteres especiais)
     for (int i = 0; cargo[i] != '\0'; i++) {
-        if (!Letra(cargo[i]) && cargo[i] != ' ') {
+        if (!letra(cargo[i]) && cargo[i] != ' ') {
             return 0; // Caractere inválido encontrado
         }
     }
