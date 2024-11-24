@@ -9,25 +9,25 @@ typedef struct artista Artista;
 
 /// Funções do Módulo  
 
-void modulo_artista(void) {
+void modulo_Artista(void) {
     char opcao;
     do {
-        opcao = menu_artista();
+        opcao = menu_Artista();
         switch(opcao) {
-            case '1': 	cadastrar_artista();
+            case '1': 	cadastrar_Artista();
                         break;
-            case '2': 	consultar_artista();
+            case '2': 	consultar_Artista();
                         break;
-            case '3': 	alterar_artista();
+            case '3': 	alterar_Artista();
                         break;
-            case '4': 	excluir_artista();
+            case '4': 	excluir_Artista();
                         break;
         } 		
     } while (opcao != '0');
 }
 
 
-char menu_artista(void) {
+char menu_Artista(void) {
     char op;
     limpaTela();
     printf("\n");
@@ -55,7 +55,7 @@ char menu_artista(void) {
 }
 
 
-void tela_cadastrar_artista(void) {
+void tela_cadastrar_Artista(void) {
     char id[12];
     char nome[51];    
     char email[30];
@@ -96,7 +96,7 @@ do {
 }
 
 
-void tela_consultar_artista(void) {
+void tela_consultar_Artista(void) {
     char id[12];
      limpaTela();
     printf("\n");
@@ -117,7 +117,7 @@ void tela_consultar_artista(void) {
 }
 
 
-void tela_alterar_artista(void) {
+void tela_alterar_Artista(void) {
     char id[12];
      limpaTela();
     printf("\n");
@@ -138,7 +138,7 @@ void tela_alterar_artista(void) {
 }
 
 
-void tela_excluir_artista(void) {
+void tela_excluir_Artista(void) {
      char id[12];
      limpaTela();
     printf("\n");
@@ -159,23 +159,23 @@ void tela_excluir_artista(void) {
 }
 
 
-void cadastrar_artista(void) {
+void cadastrar_Artista(void) {
 	// função ainda em desenvolvimento
 	// exibe a tela apenas para testes
-	tela_cadastrar_artista();
+	tela_cadastrar_Artista();
 }
-void consultar_artista(void) {
+void consultar_Artista(void) {
 	// função ainda em desenvolvimento
 	// exibe a tela apenas para testes
-	tela_consultar_artista();
+	tela_consultar_Artista();
 }
-void alterar_artista(void) {
+void alterar_Artista(void) {
 	// função ainda em desenvolvimento
 	// exibe a tela apenas para testes
-	tela_alterar_artista();
+	tela_alterar_Artista();
 }
-void excluir_artista(void) {
+void excluir_Artista(void) {
 	// função ainda em desenvolvimento
 	// exibe a tela apenas para testes
-	tela_excluir_artista();
+	tela_excluir_Artista();
 }
