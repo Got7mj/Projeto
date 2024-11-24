@@ -4,26 +4,27 @@
 #include "espetaculo.h"
 #include "biblioteca.h"
 
+typedef struct espetaculo Espetaculo;
 
-void modulo_espetaculo(void) {
+void modulo_Espetaculo(void) {
     char opcao;
     do {
-        opcao = menu_espetaculo();
+        opcao = menu_Espetaculo();
         switch(opcao) {
-            case '1': 	cadastrar_espetaculo();
+            case '1': 	cadastrar_Espetaculo();
                         break;
-            case '2': 	consultar_espetaculo();
+            case '2': 	consultar_Espetaculo();
                         break;
-            case '3': 	alterar_espetaculo();
+            case '3': 	alterar_Espetaculo();
                         break;
-            case '4': 	excluir_espetaculo();
+            case '4': 	excluir_Espetaculo();
                         break;
         } 		
     } while (opcao != '0');
 }
 
 
-char menu_espetaculo(void) {
+char menu_Espetaculo(void) {
     char op;
     limpaTela();
     printf("\n");
@@ -51,7 +52,7 @@ char menu_espetaculo(void) {
 }
 
 
-void tela_cadastrar_espetaculo(void) {
+void tela_cadastrar_Espetaculo(void) {
     char id[12];
     char data[12];
     char horario[9];
@@ -80,7 +81,7 @@ void tela_cadastrar_espetaculo(void) {
 }
 
 
-void tela_consultar_espetaculo(void) {
+void tela_consultar_Espetaculo(void) {
     char id[12];
     system("clear||cls");
     printf("\n");
@@ -101,7 +102,7 @@ void tela_consultar_espetaculo(void) {
 }
 
 
-void tela_alterar_espetaculo(void) {
+void tela_alterar_Espetaculo(void) {
     char id[12];
     system("clear||cls");
     printf("\n");
@@ -122,7 +123,7 @@ void tela_alterar_espetaculo(void) {
 }
 
 
-void tela_excluir_espetaculo(void) {
+void tela_excluir_Espetaculo(void) {
     char id[12];
     system("clear||cls");
     printf("\n");
@@ -143,23 +144,23 @@ void tela_excluir_espetaculo(void) {
 }
 
 
-void cadastrar_espetaculo(void) {
+void cadastrar_Espetaculo(void) {
 	// função ainda em desenvolvimento
 	// exibe a tela apenas para testes
-	tela_cadastrar_espetaculo();
+	tela_cadastrar_Espetaculo();
 }
-void consultar_espetaculo(void) {
+void consultar_Espetaculo(void) {
 	// função ainda em desenvolvimento
 	// exibe a tela apenas para testes
-	tela_consultar_espetaculo();
+	tela_consultar_Espetaculo();
 }
-void alterar_espetaculo(void) {
+void alterar_Espetaculo(void) {
 	// função ainda em desenvolvimento
 	// exibe a tela apenas para testes
-	tela_alterar_espetaculo();
+	tela_alterar_Espetaculo();
 }
-void excluir_espetaculo(void) {
+void excluir_Espetaculo(void) {
 	// função ainda em desenvolvimento
 	// exibe a tela apenas para testes
-	tela_excluir_espetaculo();
+	tela_excluir_Espetaculo();
 }
