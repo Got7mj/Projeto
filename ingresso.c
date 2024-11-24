@@ -3,22 +3,23 @@
 #include "ingresso.h"
 #include "biblioteca.h"
 
+typedef struct ingresso Ingresso;
 
-void modulo_ingresso(void) {
+void modulo_Ingresso(void) {
     char opcao;
     do {
-        opcao = menu_ingresso();
+        opcao = menu_Ingresso();
         switch(opcao) {
-            case '1': 	tela_comprar_ingresso();
+            case '1': 	tela_comprar_Ingresso();
                         break;
-            case '2': 	tela_reembolsar_ingresso();
+            case '2': 	tela_reembolsar_Ingresso();
                         break;            
         } 		
     } while (opcao != '0');
 }
 
 
-char tela_menu_ingresso(void) {
+char tela_menu_Ingresso(void) {
     char op;
     system("clear||cls");
     printf("\n");
@@ -43,7 +44,7 @@ char tela_menu_ingresso(void) {
 }
 
 
-void tela_comprar_ingresso(void) {
+void tela_comprar_Ingresso(void) {
     char id[12];
     char preco[3];
     char quantidade[2];
@@ -73,7 +74,7 @@ void tela_comprar_ingresso(void) {
 }
 
 
-void tela_reembolsar_ingresso(void) {
+void tela_reembolsar_Ingresso(void) {
     char id[12];
     system("clear||cls");
     printf("\n");
@@ -95,15 +96,15 @@ void tela_reembolsar_ingresso(void) {
 }
 
 
-void comprar_ingresso(void) {
+void comprar_Ingresso(void) {
 	// função ainda em desenvolvimento
 	// exibe a tela apenas para testes
-	tela_comprar_ingresso();
+	tela_comprar_Ingresso();
 }
 
 
-void reembolsar_ingresso(void) {
+void reembolsar_Ingresso(void) {
 	// função ainda em desenvolvimento
 	// exibe a tela apenas para testes
-	tela_reembolsar_ingresso();
+	tela_reembolsar_Ingresso();
 }
