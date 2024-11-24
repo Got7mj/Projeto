@@ -7,25 +7,27 @@
 
 /// Funções do Módulo  
 
-void modulo_usuario(void) {
+typedef struct usuario Usuario;
+
+void modulo_Usuario(void) {
     char opcao;
     do {
-        opcao = menu_usuario();
+        opcao = menu_Usuario();
         switch(opcao) {
-            case '1': 	cadastrar_usuario();
+            case '1': 	cadastrar_Usuario();
                         break;
-            case '2': 	consultar_usuario();
+            case '2': 	consultar_Usuario();
                         break;
-            case '3': 	alterar_usuario();
+            case '3': 	alterar_Usuario();
                         break;
-            case '4': 	excluir_usuario();
+            case '4': 	excluir_Usuario();
                         break;
         } 		
     } while (opcao != '0');
 }
 
 
-char menu_usuario(void) {
+char menu_Usuario(void) {
     char op;
     limpaTela();
     printf("\n");
@@ -53,7 +55,7 @@ char menu_usuario(void) {
 }
 
 
-void tela_cadastrar_usuario(void) {
+void tela_cadastrar_Usuario(void) {
     char id[12];
     char nome[51];    
     char email[30];
@@ -100,7 +102,7 @@ do {
 }
 
 
-void tela_consultar_usuario(void) {
+void tela_consultar_Usuario(void) {
     char id[12];
      limpaTela();
     printf("\n");
@@ -121,7 +123,7 @@ void tela_consultar_usuario(void) {
 }
 
 
-void tela_alterar_usuario(void) {
+void tela_alterar_Usuario(void) {
     char id[12];
      limpaTela();
     printf("\n");
@@ -142,7 +144,7 @@ void tela_alterar_usuario(void) {
 }
 
 
-void tela_excluir_usuario(void) {
+void tela_excluir_Usuario(void) {
      char id[12];
      limpaTela();
     printf("\n");
@@ -163,23 +165,23 @@ void tela_excluir_usuario(void) {
 }
 
 
-void cadastrar_usuario(void) {
+void cadastrar_Usuario(void) {
 	// função ainda em desenvolvimento
 	// exibe a tela apenas para testes
-	tela_cadastrar_usuario();
+	tela_cadastrar_Usuario();
 }
-void consultar_usuario(void) {
+void consultar_Usuario(void) {
 	// função ainda em desenvolvimento
 	// exibe a tela apenas para testes
-	tela_consultar_usuario();
+	tela_consultar_Usuario();
 }
-void alterar_usuario(void) {
+void alterar_Usuario(void) {
 	// função ainda em desenvolvimento
 	// exibe a tela apenas para testes
-	tela_alterar_usuario();
+	tela_alterar_Usuario();
 }
-void excluir_usuario(void) {
+void excluir_Usuario(void) {
 	// função ainda em desenvolvimento
 	// exibe a tela apenas para testes
-	tela_excluir_usuario();
+	tela_excluir_Usuario();
 }
