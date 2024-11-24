@@ -33,12 +33,13 @@ char tela_menu_Ingresso(void) {
     printf("///            2. Reembolsar ingresso                                       ///\n");
     printf("///            0. Voltar ao menu anterior                                   ///\n");
     printf("///                                                                         ///\n");
-    printf("///            Escolha a opção desejada:                                    ///\n");
+    printf("///            Escolha a opção desejada:      ");
+    scanf("%c", &op);
+    getchar();
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
-    printf("\t\t\t<<< ... Aguarde ... >>>\n");
     delay(1);
     return op;
 }
@@ -69,7 +70,6 @@ void tela_comprar_Ingresso(void) {
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
-    printf("\t\t\t<<< ... Aguarde ... >>>\n");
     delay(1);
 }
 
@@ -91,7 +91,6 @@ void tela_reembolsar_Ingresso(void) {
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
-    printf("\t\t\t<<< ... Aguarde ... >>>\n");
     delay(1);
 }
 
