@@ -7,9 +7,9 @@ char quantidade[2];
  int status;
 };
 
-void modulo_ingresso(void);
-char menu_ingresso(void);
-void tela_comprar_ingresso(void);
-void tela_reembolsar_ingresso(void);
-void comprar_ingresso(void);
-void reembolsar_ingresso(void);
+void modulo_Ingresso(void);
+char menu_Ingresso(void);
+void tela_comprar_Ingresso(void);
+void tela_reembolsar_Ingresso(void);
+void comprar_Ingresso(void);
+void reembolsar_Ingresso(void);
