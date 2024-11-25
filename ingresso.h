@@ -3,7 +3,7 @@ typedef struct ingresso Ingresso;
 struct ingresso {
 char id[12];
 char preco[3];
-char quantidade[2];
+int quantidade[2];
  int status;
 };
 
