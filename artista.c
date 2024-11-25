@@ -210,7 +210,7 @@ Artista* buscar_Artista(char* id) {
 	if (fp == NULL) {
 		tela_Erro_Arquivo();
 	}
-	while(fread(usr, sizeof(Artista), 1, fp)) {
+	while(fread(art, sizeof(Artista), 1, fp)) {
 		if ((strcmp(art->id, id) == 0) && (art->status == True)) {
 			fclose(fp);
 			return art;
