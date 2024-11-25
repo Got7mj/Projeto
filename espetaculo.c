@@ -65,19 +65,19 @@ Espetaculo* tela_Preencher_Espetaculo(void) {
 est = (Espetaculo*) malloc(sizeof(Espetaculo));
 do {
     printf("///            ID (apenas números):    ");
-    scanf("%[^\n]", art->id);
+    scanf("%[^\n]", est->id);
     getchar();
-} while(!validarID(art->id)); 
+} while(!validarID(est->id)); 
 do {	
     printf("///            Data (dd/mm/aaaa):      ");
-    scanf("%[^\n]", art->data);
+    scanf("%[^\n]", est->data);
     getchar();
-} while(!validarData(art->data));
+} while(!validarData(est->data));
 do {
     printf("///            Horário (hh/mm/ss):     ");
-    scanf("%[^\n]", art->horario);
+    scanf("%[^\n]", est->horario);
     getchar();
-} while(!validarHorario(art->horario)); 
+} while(!validarHorario(est->horario)); 
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
