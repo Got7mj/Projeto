@@ -16,7 +16,7 @@ char menu_Usuario(void);
 Usuario* tela_Preencher_Usuario(void);
 char* tela_consultar_Usuario(void);
 char* tela_alterar_Usuario(void);
-char* excluir_Usuario(void);
+char* tela_excluir_Usuario(void);
 void tela_Erro_Arquivo(void);
 void gravar_Usuario(Usuario*);
 Usuario* buscar_Usuario(char*);
