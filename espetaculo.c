@@ -190,7 +190,7 @@ void gravar_Espetaculo(Espetaculo *est) {
 
 Espetaculo* buscar_Espetaculo(char* id) {
 	FILE* fp;
-	Artista* est;
+	Espetaculo* est;
 
 	est = (Espetaculo*) malloc(sizeof(Espetaculo));
 	fp = fopen("espetaculos.dat", "rb");
