@@ -9,7 +9,12 @@ char quantidade[2];
 
 void modulo_Ingresso(void);
 char menu_Ingresso(void);
-void tela_comprar_Ingresso(void);
-void tela_reembolsar_Ingresso(void);
+Ingresso* tela_Preencher_Ingresso(void);
+char* tela_reembolsar_Ingresso(void);
+void tela_Erro_Ingresso(void);
+void gravar_Ingresso(Ingresso*);
+Ingresso* buscar_Ingresso(char*);
+void exibir_Ingresso(Ingresso*);
+void regravar_Ingresso(Ingresso*);
 void comprar_Ingresso(void);
 void reembolsar_Ingresso(void);
