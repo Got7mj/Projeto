@@ -78,7 +78,7 @@ do{
 } while(!validarNome(art->nome));
 do{
     printf("///            E-mail:                 ");
-    scanf(""%[^\n]", art->email);
+    scanf("%[^\n]", art->email);
     getchar();
 } while(!validarEmail("%[^\n]", art->email));
 do {
