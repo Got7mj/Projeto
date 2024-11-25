@@ -210,14 +210,14 @@ Espetaculo* buscar_Espetaculo(char* id) {
 
 void exibir_Espetaculo(Espetaculo* est) {
 
-	if (usr == NULL) {
+	if (est == NULL) {
 		printf("\n= = = Espetaculo Inexistente = = =\n");
 	} else {
 		printf("\n= = = Espetaculo Cadastrado = = =\n");
-		printf("Id: %s\n", atr->id);
-		printf("Data: %s\n", atr->data);
-		printf("Horario: %s\n", atr->horario);		
-		printf("Status: %d\n", atr->status);
+		printf("Id: %s\n", est->id);
+		printf("Data: %s\n", est->data);
+		printf("Horario: %s\n", est->horario);		
+		printf("Status: %d\n", est->status);
 	}
 	printf("\n\nTecle ENTER para continuar!\n\n");
 	getchar();
@@ -271,7 +271,7 @@ void alterar_Espetaculo(void) {
 	Espetaculo *est;
 	char* id;
 	est = buscar_Espetaculo(id);
-	if (art == NULL) {
+	if (est == NULL) {
 		printf("\n\nEspetaculo não encontrado!\n\n");
 	} else {
 		est = tela_Preencher_Espetaculo();
