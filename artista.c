@@ -80,7 +80,7 @@ do{
     printf("///            E-mail:                 ");
     scanf("%[^\n]", art->email);
     getchar();
-} while(!validarEmail("%[^\n]", art->email));
+} while(!validarEmail(art->email));
 do {
 	printf("///           Celular  (apenas números com DDD): ");
 	scanf("%[^\n]", art->celular);
@@ -242,9 +242,9 @@ void exibir_Artista(Artista* art) {
 void regravar_Artista(Artista* art) {
 	int achou;
 	FILE* fp;
-	Usuario* art_Lido;
+	Artista* art_Lido;
 
-	atr_Lido = (Artista*) malloc(sizeof(Artista));
+	art_Lido = (Artista*) malloc(sizeof(Artista));
 	fp = fopen("artistas.dat", "r+b");
 	if (fp == NULL) {
 		tela_Erro_Arquivo();
@@ -253,7 +253,7 @@ void regravar_Artista(Artista* art) {
 	achou = False;
 	while(fread(art_Lido, sizeof(Artista), 1, fp) && !achou) {
 		//fread(art_Lido, sizeof(Artista), 1, fp);
-		if (strcmp(art_Lido->id, atr->id) == 0) {
+		if (strcmp(art_Lido->id, art->id) == 0) {
 			achou = True;
 			fseek(fp, -1*sizeof(Artista), SEEK_CUR);
         	fwrite(art, sizeof(Artista), 1, fp);
@@ -299,7 +299,7 @@ void alterar_Artista(void) {
 void excluir_Artista(void) {
 	Artista *art;
 	char* id;
-	id = tela_Excluir_Artista(id);
+	id = tela_excluir_Artista(id);
 	art = (Artista*) malloc(sizeof(Artista));
 	art = buscar_Artista(id);
 	if (art == NULL) {
