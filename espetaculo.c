@@ -227,7 +227,7 @@ void exibir_Espetaculo(Espetaculo* est) {
 void regravar_Espetaculo(Espetaculo* est) {
 	int achou;
 	FILE* fp;
-	Usuario* est_Lido;
+	Espetaculo* est_Lido;
 
 	est_Lido = (Espetaculo*) malloc(sizeof(Espetaculo));
 	fp = fopen("espetaculos.dat", "r+b");
