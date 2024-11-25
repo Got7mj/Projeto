@@ -69,9 +69,9 @@ do {
 } while(!validarPreco(igs->preco)); 
 do {	
     printf("///            Quantidade (apenas números):     ");
-    scanf("%d", igs->quantidade);
+    scanf("%d\n", igs->quantidade);
     getchar();
-} while(!validarQuantidade(igs->quantidade)); 
+} while (!validarQuantidade(*igs->quantidade));
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
