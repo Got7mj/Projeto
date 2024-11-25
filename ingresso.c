@@ -185,7 +185,7 @@ void regravar_Ingresso(Ingresso* igs) {
 		if (strcmp(igs_Lido->id, igs->id) == 0) {
 			achou = True;
 			fseek(fp, -1*sizeof(Ingresso), SEEK_CUR);
-        	fwrite(est, sizeof(Ingresso), 1, fp);
+        	fwrite(igs, sizeof(Ingresso), 1, fp);
 			//break;
 		}
 	}
