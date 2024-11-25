@@ -13,7 +13,7 @@ Espetaculo* tela_Preencher_Espetaculo(void);
 char* tela_consultar_Espetaculo(void);
 char* tela_alterar_Espetaculo(void);
 char* tela_excluir_Espetaculo(void);
-void tela_Erro_Espetaculo(void);
+void tela_Erro_Arquivo(void);
 void gravar_Espetaculo(Espetaculo*);
 Espetaculo* buscar_Espetaculo(char*);
 void exibir_Espetaculo(Espetaculo*);
