@@ -60,7 +60,7 @@ do {
     printf("///            ID (apenas números):    ");
     scanf("%[^\n]", igs->id);
     getchar();
-} while(!validarID(art->id)); 
+} while(!validarID(igs->id)); 
 do {
     printf("///            Preço (apenas números):    ");
     scanf("%[^\n]", igs->preco);
