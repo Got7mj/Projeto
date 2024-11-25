@@ -134,76 +134,84 @@ void tela_Erro_Arquivo(void) {
 
 
 void gravar_Ingresso(Ingresso *igs) {
-	FILE* fp;
-	fp = fopen("ingressos.dat", "ab");
-	if (fp == NULL) {
-		tela_Erro_Arquivo();
-	}
-	fwrite(igs, sizeof(Ingresso), 1, fp);
-	fclose(fp);
+    FILE* fp = fopen("ingressos.dat", "ab");
+    if (fp == NULL) {
+        tela_Erro_Arquivo();
+    }
+    fwrite(igs, sizeof(Ingresso), 1, fp);
+    fclose(fp);
+    // A memória de igs não deve ser liberada aqui, pois a função que chama 'gravar_Ingresso' deve liberar
 }
+
 
 
 Ingresso* buscar_Ingresso(char* id) {
-	FILE* fp;
-	Ingresso* igs;
+    FILE* fp;
+    Ingresso* igs = (Ingresso*) malloc(sizeof(Ingresso));  // Aloca memória corretamente
+    if (igs == NULL) {
+        // Tratar erro de alocação de memória
+        tela_Erro_Arquivo();
+    }
 
-	igs = (Ingresso*) malloc(sizeof(Ingresso));
-	fp = fopen("ingressos.dat", "rb");
-	if (fp == NULL) {
-		tela_Erro_Arquivo();
-	}
-	while(fread(igs, sizeof(Ingresso), 1, fp)) {
-		if ((strcmp(igs->id, id) == 0) && (igs->status == True)) {
-			fclose(fp);
-			return igs;
-		}
-	}
-	fclose(fp);
-	return NULL;
+    fp = fopen("ingressos.dat", "rb");
+    if (fp == NULL) {
+        tela_Erro_Arquivo();
+    }
+    
+    while(fread(igs, sizeof(Ingresso), 1, fp)) {
+        if (strcmp(igs->id, id) == 0 && igs->status == True) {
+            fclose(fp);
+            return igs;
+        }
+    }
+    fclose(fp);
+    free(igs);  // Liberar memória se o ingresso não for encontrado
+    return NULL;
 }
+
 
 
 void exibir_Ingresso(Ingresso* igs) {
-
-	if (igs == NULL) {
-		printf("\n= = = Ingresso Inexistente = = =\n");
-	} else {
-		printf("\n= = = Ingresso Cadastrado = = =\n");
-		printf("Id: %s\n", igs->id);
-		printf("Preço: %s\n", igs->preco);
-		printf("Quantidade: %s\n", igs->quantidade);		
-		printf("Status: %d\n", igs->status);
-	}
-	printf("\n\nTecle ENTER para continuar!\n\n");
-	getchar();
+    if (igs == NULL) {
+        printf("\n= = = Ingresso Inexistente = = =\n");
+    } else {
+        printf("\n= = = Ingresso Cadastrado = = =\n");
+        printf("Id: %s\n", igs->id);
+        printf("Preço: %s\n", igs->preco);
+        printf("Quantidade: %d\n", igs->quantidade);  // Corrigir para 'igs->quantidade' ser do tipo 'int'
+        printf("Status: %d\n", igs->status);
+    }
+    printf("\n\nTecle ENTER para continuar!\n\n");
+    getchar();
 }
+
 
 
 void regravar_Ingresso(Ingresso* igs) {
-	int achou;
-	FILE* fp;
-	Ingresso* igs_Lido;
+    FILE* fp = fopen("ingressos.dat", "r+b");
+    if (fp == NULL) {
+        tela_Erro_Arquivo();
+    }
+    Ingresso* igs_Lido = (Ingresso*) malloc(sizeof(Ingresso));
+    int achou = False;
 
-	igs_Lido = (Ingresso*) malloc(sizeof(Ingresso));
-	fp = fopen("ingressos.dat", "r+b");
-	if (fp == NULL) {
-		tela_Erro_Arquivo();
-	}
-	// while(!feof(fp)) {
-	achou = False;
-	while(fread(igs_Lido, sizeof(Ingresso), 1, fp) && !achou) {
-		//fread(igs_Lido, sizeof(Ingresso), 1, fp);
-		if (strcmp(igs_Lido->id, igs->id) == 0) {
-			achou = True;
-			fseek(fp, -1*sizeof(Ingresso), SEEK_CUR);
-        	fwrite(igs, sizeof(Ingresso), 1, fp);
-			//break;
-		}
-	}
-	fclose(fp);
-	free(igs_Lido);
+    while(fread(igs_Lido, sizeof(Ingresso), 1, fp)) {
+        if (strcmp(igs_Lido->id, igs->id) == 0) {
+            achou = True;
+            fseek(fp, -1 * sizeof(Ingresso), SEEK_CUR);  // Vai para o início do ingresso encontrado
+            fwrite(igs, sizeof(Ingresso), 1, fp);
+            break;
+        }
+    }
+
+    if (!achou) {
+        printf("Ingresso não encontrado para atualização.\n");
+    }
+
+    fclose(fp);
+    free(igs_Lido);  // Libera a memória alocada
 }
+
 
 
 void comprar_Ingresso(void) {
@@ -215,19 +223,17 @@ void comprar_Ingresso(void) {
 
 
 void reembolsar_Ingresso(void) {
-	Ingresso *igs;
-	char* id;
-	igs = buscar_Ingresso(id);
-	if (igs == NULL) {
-		printf("\n\nIngresso não encontrado!\n\n");
-	} else {
-		igs = tela_Preencher_Ingresso();
-		strcpy(igs->id, id);
-		regravar_Ingresso(igs);
-		// Outra opção:
-		// excluir_Ingresso(id);
-		// gravar_Ingresso(igs);
-		free(igs);
-	}
-	free(id);
+    Ingresso *igs;
+    char* id;
+    id = tela_reembolsar_Ingresso();  // Agora o ID é obtido da tela
+    igs = buscar_Ingresso(id);
+    if (igs == NULL) {
+        printf("\n\nIngresso não encontrado!\n\n");
+    } else {
+        igs = tela_Preencher_Ingresso();
+        strcpy(igs->id, id);  // Preserva o ID original
+        regravar_Ingresso(igs);
+    }
+    free(id);  // Libera a memória alocada para o ID
 }
+
