@@ -90,7 +90,7 @@ do {
 char* tela_consultar_Espetaculo(void) {
     char* id;
     id = (char*) malloc(12*sizeof(char));
-    system("clear||cls");
+    limpaTela();
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
@@ -113,7 +113,7 @@ char* tela_consultar_Espetaculo(void) {
 char* tela_alterar_Espetaculo(void) {
     char* id;
     id = (char*) malloc(12*sizeof(char));
-    system("clear||cls");
+    limpaTela();
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
@@ -136,7 +136,7 @@ char* tela_alterar_Espetaculo(void) {
 char* tela_excluir_Espetaculo(void) {
     char* id;
     id = (char*) malloc(12*sizeof(char));
-    system("clear||cls");
+    limpaTela();
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
