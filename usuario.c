@@ -166,20 +166,29 @@ void tela_excluir_Usuario(void) {
 
 
 void cadastrar_Usuario(void) {
-	// função ainda em desenvolvimento
-	// exibe a tela apenas para testes
-	tela_cadastrar_Usuario();
+	Usuario *usr;
+	usr = tela_Preencher_Usuario();
+	gravar_Usuario(usr);
+	free(usr);
 }
+
 void consultar_Usuario(void) {
-	// função ainda em desenvolvimento
-	// exibe a tela apenas para testes
-	tela_consultar_Usuario();
+	Usuario *usr;
+	char* id;
+	usr = buscar_Usuario(id);
+	exibir_Usuario(usr);
+	free(usr); 
+	free(id);
 }
+
 void alterar_Usuario(void) {
+	Usuario *usr;
+	char* id;
 	// função ainda em desenvolvimento
 	// exibe a tela apenas para testes
 	tela_alterar_Usuario();
 }
+
 void excluir_Usuario(void) {
 	// função ainda em desenvolvimento
 	// exibe a tela apenas para testes
