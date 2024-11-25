@@ -100,7 +100,7 @@ Usuario* tela_Preencher_Usuario(void) {
 }
 
 
-void tela_consultar_Usuario(void) {
+char* tela_consultar_Usuario(void) {
     char* id;
     id = (char*) malloc(12*sizeof(char));
     limpaTela();
@@ -123,7 +123,7 @@ void tela_consultar_Usuario(void) {
 }
 
 
-void tela_alterar_Usuario(void) {
+char* tela_alterar_Usuario(void) {
     char* id;
     id = (char*) malloc(12*sizeof(char));
     limpaTela();
@@ -146,7 +146,7 @@ void tela_alterar_Usuario(void) {
 }
 
 
-void tela_excluir_Usuario(void) {
+char* tela_excluir_Usuario(void) {
     char* id;
     id = (char*) malloc(12*sizeof(char));
     limpaTela();
