@@ -221,18 +221,18 @@ Artista* buscar_Artista(char* id) {
 }
 
 
-void exibir_Artista(Artista* atr) {
+void exibir_Artista(Artista* art) {
 
-	if (usr == NULL) {
+	if ( art== NULL) {
 		printf("\n= = = Artista Inexistente = = =\n");
 	} else {
 		printf("\n= = = Artista Cadastrado = = =\n");
-		printf("Id: %s\n", atr->id);
-		printf("Nome: %s\n", atr->nome);
-		printf("Email: %s\n", atr->email);
-		printf("Celular: %s\n", atr->celular);
-		printf("Cargo: %s\n", atr->cargo);		
-		printf("Status: %d\n", atr->status);
+		printf("Id: %s\n", art->id);
+		printf("Nome: %s\n", art->nome);
+		printf("Email: %s\n", art->email);
+		printf("Celular: %s\n", art->celular);
+		printf("Cargo: %s\n", art->cargo);		
+		printf("Status: %d\n", art->status);
 	}
 	printf("\n\nTecle ENTER para continuar!\n\n");
 	getchar();
@@ -242,7 +242,7 @@ void exibir_Artista(Artista* atr) {
 void regravar_Artista(Artista* art) {
 	int achou;
 	FILE* fp;
-	Usuario* atr_Lido;
+	Usuario* art_Lido;
 
 	atr_Lido = (Artista*) malloc(sizeof(Artista));
 	fp = fopen("artistas.dat", "r+b");
@@ -251,17 +251,17 @@ void regravar_Artista(Artista* art) {
 	}
 	// while(!feof(fp)) {
 	achou = False;
-	while(fread(atr_Lido, sizeof(Artista), 1, fp) && !achou) {
-		//fread(atr_Lido, sizeof(Artista), 1, fp);
-		if (strcmp(atr_Lido->id, atr->id) == 0) {
+	while(fread(art_Lido, sizeof(Artista), 1, fp) && !achou) {
+		//fread(art_Lido, sizeof(Artista), 1, fp);
+		if (strcmp(art_Lido->id, atr->id) == 0) {
 			achou = True;
 			fseek(fp, -1*sizeof(Artista), SEEK_CUR);
-        	fwrite(atr, sizeof(Artista), 1, fp);
+        	fwrite(art, sizeof(Artista), 1, fp);
 			//break;
 		}
 	}
 	fclose(fp);
-	free(atr_Lido);
+	free(art_Lido);
 }
 
 
@@ -283,7 +283,7 @@ void alterar_Artista(void) {
 	Artista *art;
 	char* id;
 	art = buscar_Artista(id);
-	if (usr == NULL) {
+	if (art == NULL) {
 		printf("\n\nArtista não encontrado!\n\n");
 	} else {
 		usr = tela_Preencher_Artista();
