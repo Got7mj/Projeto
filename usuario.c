@@ -299,7 +299,7 @@ void alterar_Usuario(void) {
 void excluir_Usuario(void) {
 	Usuario *usr;
 	char* id;
-	id = tela_Excluir_Usuario(id);
+	id = tela_excluir_Usuario(id);
 	usr = (Usuario*) malloc(sizeof(Usuario));
 	usr = buscar_Usuario(id);
 	if (usr == NULL) {
