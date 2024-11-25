@@ -274,7 +274,7 @@ void cadastrar_Artista(void) {
 void consultar_Artista(void) {
 	Artista *art;
 	char* id;
-	usr = buscar_Artista(id);
+	art = buscar_Artista(id);
 	exibir_Artista(art);
 	free(art); 
 	free(id);
