@@ -102,7 +102,7 @@ char* tela_reembolsar_Ingresso(void) {
 }
 
 
-void tela_Erro_Ingresso(void) {
+void tela_Erro_Arquivo(void) {
     limpaTela();
     printf("\n");
     printf("////////////////////////////////////////////////////////////////////////////\n");
