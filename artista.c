@@ -286,7 +286,7 @@ void alterar_Artista(void) {
 	if (art == NULL) {
 		printf("\n\nArtista não encontrado!\n\n");
 	} else {
-		usr = tela_Preencher_Artista();
+		art = tela_Preencher_Artista();
 		strcpy(art->id, id);
 		regravar_Artista(art);
 		// Outra opção:
