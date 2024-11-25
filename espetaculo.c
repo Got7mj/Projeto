@@ -289,7 +289,7 @@ void alterar_Espetaculo(void) {
 void excluir_Espetaculo(void) {
 	Espetaculo *est;
 	char* id;
-	id = tela_Excluir_Espetaculo(id);
+	id = tela_Excluir_Espetaculo();
 	est = (Espetaculo*) malloc(sizeof(Espetaculo));
 	est = buscar_Espetaculo(id);
 	if (est == NULL) {
