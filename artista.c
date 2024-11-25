@@ -196,7 +196,7 @@ void gravar_Artista(Artista *art) {
 	if (fp == NULL) {
 		tela_Erro_Arquivo();
 	}
-	fwrite(usr, sizeof(Artista), 1, fp);
+	fwrite(art, sizeof(Artista), 1, fp);
 	fclose(fp);
 }
 
