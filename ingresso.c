@@ -56,28 +56,33 @@ Ingresso* tela_Preencher_Ingresso(void) {
     printf("///            = = = = = = = = Comprar ingresso = = = = = = =               ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
-igs = (Ingresso*) malloc(sizeof(Ingresso));
-do {
-    printf("///            ID (apenas números):    ");
-    scanf("%[^\n]", igs->id);
-    getchar();
-} while(!validarID(igs->id)); 
-do {
-    printf("///            Preço (apenas números):    ");
-    scanf("%[^\n]", igs->preco);
-    getchar();
-} while(!validarPreco(igs->preco)); 
-do {	
-    printf("///            Quantidade (apenas números):     ");
-    scanf("%d\n", igs->quantidade);
-    getchar();
-} while (!validarQuantidade(*igs->quantidade));
+    igs = (Ingresso*) malloc(sizeof(Ingresso));
+    // Alocação para os campos id e preco
+    igs->id = (char*)malloc(20 * sizeof(char));  // Ajuste conforme necessário
+    igs->preco = (char*)malloc(10 * sizeof(char));  // Ajuste conforme necessário
+    do {
+        printf("///            ID (apenas números):    ");
+        scanf("%[^\n]", igs->id);
+        getchar();
+    } while (!validarID(igs->id));
+    do {
+        printf("///            Preço (apenas números):    ");
+        scanf("%[^\n]", igs->preco);
+        getchar();
+    } while (!validarPreco(igs->preco));
+    do {
+        printf("///            Quantidade (apenas números):     ");
+        scanf("%d\n", &(igs->quantidade));
+        getchar();
+    } while (!validarQuantidade(igs->quantidade));
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     delay(1);
+    return igs;
 }
+
 
 
 char* tela_reembolsar_Ingresso(void) {
