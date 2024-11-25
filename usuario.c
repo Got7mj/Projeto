@@ -186,7 +186,7 @@ void tela_Erro_Arquivo(void) {
     printf("\n\nTecle ENTER para continuar!\n\n");
     getchar();
     exit(1);
-
+}
 
 void gravar_Usuario(Usuario *usr) {
 	FILE* fp;
