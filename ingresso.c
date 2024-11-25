@@ -57,24 +57,28 @@ Ingresso* tela_Preencher_Ingresso(void) {
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     igs = (Ingresso*) malloc(sizeof(Ingresso));
-    // Alocação para os campos id e preco
-    igs->id = (char*)malloc(20 * sizeof(char));  // Ajuste conforme necessário
-    igs->preco = (char*)malloc(10 * sizeof(char));  // Ajuste conforme necessário
+    
+    // Validação do ID
     do {
         printf("///            ID (apenas números):    ");
-        scanf("%[^\n]", igs->id);
-        getchar();
-    } while (!validarID(igs->id));
+        scanf("%11s", igs->id);  // Limitar para 11 caracteres para evitar estouro de buffer
+        getchar();  // Limpar o caractere de nova linha que fica no buffer
+    } while(!validarID(igs->id)); 
+    
+    // Validação do Preço
     do {
         printf("///            Preço (apenas números):    ");
-        scanf("%[^\n]", igs->preco);
+        scanf("%11s", igs->preco);  // Limitar para 11 caracteres para evitar estouro de buffer
         getchar();
-    } while (!validarPreco(igs->preco));
-    do {
+    } while(!validarPreco(igs->preco)); 
+    
+    // Validação da Quantidade
+    do {    
         printf("///            Quantidade (apenas números):     ");
-        scanf("%d\n", &(igs->quantidade));
+        scanf("%d", &igs->quantidade);  // Corrigido para passar o endereço de 'quantidade'
         getchar();
     } while (!validarQuantidade(igs->quantidade));
+    
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -87,7 +91,7 @@ Ingresso* tela_Preencher_Ingresso(void) {
 
 char* tela_reembolsar_Ingresso(void) {
     char* id;
-    id = (char*) malloc(12*sizeof(char));
+    id = (char*) malloc(12 * sizeof(char));  // Garantir que a memória é suficiente para o ID
     limpaTela();
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -97,14 +101,16 @@ char* tela_reembolsar_Ingresso(void) {
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     printf("///            Informe o ID (apenas números):   ");
-    scanf("%[0-9]", id);
+    scanf("%11s", id);  // Limitar para 11 caracteres para evitar estouro de buffer
     getchar();
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     delay(1);
+    return id;
 }
+
 
 
 void tela_Erro_Arquivo(void) {
