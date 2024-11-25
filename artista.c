@@ -299,7 +299,7 @@ void alterar_Artista(void) {
 void excluir_Artista(void) {
 	Artista *art;
 	char* id;
-	id = tela_excluir_Artista(id);
+	id = tela_excluir_Artista();
 	art = (Artista*) malloc(sizeof(Artista));
 	art = buscar_Artista(id);
 	if (art == NULL) {
