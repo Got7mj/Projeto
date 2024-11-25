@@ -157,7 +157,7 @@ char* tela_excluir_Espetaculo(void) {
 
 
 
-void tela_Erro_Espetaculo(void) {
+void tela_Erro_Arquivo(void) {
     limpaTela();
     printf("\n");
     printf("////////////////////////////////////////////////////////////////////////////\n");
