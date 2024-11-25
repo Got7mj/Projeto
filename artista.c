@@ -177,7 +177,7 @@ void tela_Erro_Arquivo(void) {
     printf("///                                                                      ///\n");
     printf("///           = = = = = = Erro: Não foi possível acessar = = = = = =     ///\n");
     printf("/// 	  = = = = = = = = = o banco de dados = = = = = = = = = =     ///\n");
-    printf("///           = = = O arquivo de usuários não foi encontrada = = = =     ///\n");
+    printf("///           = = = O arquivo de artistas não foi encontrada = = = =     ///\n");
     printf("///           = = = = = = = Se o problema persistir, = = = = = = = =     ///\n");
     printf("/// 	  = = = = entre em contato com o administrador.= = = = =     ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = =     ///\n");
