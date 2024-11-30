@@ -212,13 +212,18 @@ int validarNasc(char* dataNasc) {
 
 
 ///////////// Valida Id ////////////////////////// 
- void validarID(char **id, int tamanho) {
-    int tam;
-    for (int i = 0; i < tamanho; i++) {  // Declarando 'i' aqui dentro do for
-        tam = strlen(id[i]);  // Agora 'i' está declarado e a função vai funcionar
-        if (!Digito(id[i][0])) {  // Verifica o primeiro caractere do ID
-        }
+ int validarID(char* id) {
+  int tam;
+  tam = strlen(id);
+  if (tam < 10 || tam > 11) {
+    return 0;
+  }
+  for (int i = 0; i < tam; i++) {
+    if (!ehDigito(id[i])) {
+      return 0;
     }
+  }
+  return 1;
 }
 
 
