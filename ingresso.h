@@ -12,9 +12,7 @@ typedef struct ingresso {
 } Ingresso;
 
 // Funções de manipulação de ingressos
-int validarID(char* id)
-bool validarPreco(char* preco);
-bool validarQuantidade(int quantidade);
+
 Ingresso* tela_Preencher_Ingresso(void);
 char* tela_reembolsar_Ingresso(void);
 void tela_Erro_Arquivo(void);
