@@ -219,7 +219,7 @@ int validarNasc(char* dataNasc) {
     return 0;
   }
   for (int i = 0; i < tam; i++) {
-    if (!ehDigito(id[i])) {
+    if (!Digito(id[i])) {
       return 0;
     }
   }
