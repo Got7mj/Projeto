@@ -272,6 +272,8 @@ void cadastrar_Artista(void) {
 	gravar_Artista(art);
 	free(art);
 }
+
+
 void consultar_Artista(void) {
 	Artista *art;
 	char* id;
@@ -280,6 +282,8 @@ void consultar_Artista(void) {
 	free(art); 
 	free(id);
 }
+
+
 void alterar_Artista(void) {
 	Artista *art;
 	char* id;
@@ -297,6 +301,8 @@ void alterar_Artista(void) {
 	}
 	free(id);
 }
+
+
 void excluir_Artista(void) {
 	Artista *art;
 	char* id;
