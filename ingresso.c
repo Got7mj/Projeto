@@ -11,9 +11,9 @@ void modulo_Ingresso(void) {
     do {
         opcao = menu_Ingresso();
         switch(opcao) {
-            case '1': 	tela_comprar_Ingresso();
+            case '1': 	comprar_Ingresso();
                         break;
-            case '2': 	tela_reembolsar_Ingresso();
+            case '2': 	reembolsar_Ingresso();
                         break;            
         } 		
     } while (opcao != '0');
