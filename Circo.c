@@ -25,15 +25,18 @@ int main(void) {
     do {
         opcao = menu_principal();
         switch(opcao) {
-            case '1':   modulo_artista();
+            case '1':   modulo_Artista();
                         break;
-            case '2':   modulo_espetaculo();
+            case '2':   modulo_Espetaculo();
                         break;
-            case '3':   modulo_ingresso();
+            case '3':   modulo_Ingresso();
                         break;
-            case '4':   modulo_relatorio();
-                        break;
-            case '5':   tela_sobre();
+            case '4':   modulo_Usuario();
+		    	break;
+            case '5':   modulo_relatorio();
+		        break;
+	    case '6':
+		        tela_sobre();
                         tela_equipe();
                         break;
         } 	
