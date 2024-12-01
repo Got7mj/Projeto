@@ -236,4 +236,3 @@ void reembolsar_Ingresso(void) {
     }
     free(id);  // Libera a memória alocada para o ID
 }
-
