@@ -20,7 +20,7 @@ void modulo_Ingresso(void) {
 }
 
 
-char tela_menu_Ingresso(void) {
+char menu_Ingresso(void) {
     char op;
     limpaTela();
     printf("\n");
