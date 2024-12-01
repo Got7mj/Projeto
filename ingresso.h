@@ -20,5 +20,3 @@ void exibir_Ingresso(Ingresso*);
 void regravar_Ingresso(Ingresso*);
 void comprar_Ingresso(void);
 void reembolsar_Ingresso(void);
-
-
