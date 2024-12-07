@@ -276,7 +276,7 @@ void cadastrar_Artista(void) {
 
 void consultar_Artista(void) {
 	Artista *art;
-	char* id;
+	char* id = NULL;
 	art = buscar_Artista(id);
 	exibir_Artista(art);
 	free(art); 
@@ -286,7 +286,7 @@ void consultar_Artista(void) {
 
 void alterar_Artista(void) {
 	Artista *art;
-	char* id;
+	char* id = NULL;
 	art = buscar_Artista(id);
 	if (art == NULL) {
 		printf("\n\nArtista não encontrado!\n\n");
