@@ -33,7 +33,7 @@ int main(void) {
                         break;
             case '4':   modulo_Usuario();
 		    	break;
-            case '5':   modulo_relatorio();
+            case '5':   modulo_Relatorio();
 		        break;
 	    case '6':   tela_sobre();
 			break;
