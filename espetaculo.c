@@ -261,7 +261,7 @@ void cadastrar_Espetaculo(void) {
 
 void consultar_Espetaculo(void) {
 	Espetaculo *est;
-	char* id;
+	char* id = NULL;
 	est = buscar_Espetaculo(id);
 	exibir_Espetaculo(est);
 	free(est); 
@@ -270,7 +270,7 @@ void consultar_Espetaculo(void) {
 
 void alterar_Espetaculo(void) {
 	Espetaculo *est;
-	char* id;
+	char* id = NULL;
 	est = buscar_Espetaculo(id);
 	if (est == NULL) {
 		printf("\n\nEspetaculo não encontrado!\n\n");
