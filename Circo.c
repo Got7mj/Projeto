@@ -35,9 +35,9 @@ int main(void) {
 		    	break;
             case '5':   modulo_relatorio();
 		        break;
-	    case '6':
-		        tela_sobre();
-                        tela_equipe();
+	    case '6':   tela_sobre();
+			break;
+	    case '7':   tela_equipe();
                         break;
         } 	
     } while (opcao != '0');
