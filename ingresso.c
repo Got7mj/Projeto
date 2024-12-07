@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "ingresso.h"
+#include "tela.h"
 #include "biblioteca.h"
 
 typedef struct ingresso Ingresso;
@@ -109,27 +110,6 @@ char* tela_reembolsar_Ingresso(void) {
     printf("\n");
     delay(1);
     return id;
-}
-
-
-
-void tela_Erro_Arquivo(void) {
-    limpaTela();
-    printf("\n");
-    printf("////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                      ///\n");
-    printf("///           = = = = = = Erro: Não foi possível acessar = = = = = =     ///\n");
-    printf("/// 	  = = = = = = = = = o banco de dados = = = = = = = = = =     ///\n");
-    printf("///           = = = O arquivo de Ingresso não foi encontrada = = = =     ///\n");
-    printf("///           = = = = = = = Se o problema persistir, = = = = = = = =     ///\n");
-    printf("/// 	  = = = = entre em contato com o administrador.= = = = =     ///\n");
-    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = =     ///\n");
-    printf("///                                                                      ///\n");
-    printf("///                                                                      ///\n");
-    printf("////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n\nTecle ENTER para continuar!\n\n");
-    getchar();
-    exit(1);
 }
 
 
