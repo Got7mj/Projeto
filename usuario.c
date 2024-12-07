@@ -271,7 +271,7 @@ void cadastrar_Usuario(void) {
 
 void consultar_Usuario(void) {
 	Usuario *usr;
-	char* id;
+	char* id = NULL;
 	usr = buscar_Usuario(id);
 	exibir_Usuario(usr);
 	free(usr); 
@@ -280,7 +280,7 @@ void consultar_Usuario(void) {
 
 void alterar_Usuario(void) {
 	Usuario *usr;
-	char* id;
+	char* id = NULL;
 	usr = buscar_Usuario(id);
 	if (usr == NULL) {
 		printf("\n\nUsuario não encontrado!\n\n");
