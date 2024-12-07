@@ -5,6 +5,7 @@
 #include "espetaculo.h"
 #include "ingresso.h"
 #include "usuario.h"
+#include "relatorio.h"
 
 
 
