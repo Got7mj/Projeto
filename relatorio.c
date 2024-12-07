@@ -11,10 +11,9 @@
 /// Assinatura das funções
 
 
-void modulo_relatorio(void);
+void modulo_Relatorio(void);
 void delay(int);
 
-void moduloRelatorio(void) {
+void modulo_Relatorio(void) {
 	// modulo em desenvolvimento
-
 }
