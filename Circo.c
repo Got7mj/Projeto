@@ -50,7 +50,7 @@ int main(void) {
 /// Funções
 
 void tela_sobre(void) {
-    system("clear||cls");
+    system("clear");
     printf("\n");    
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
@@ -68,7 +68,7 @@ void tela_sobre(void) {
 
 
 void tela_equipe(void) {
-    system("clear||cls");
+    system("clear");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
@@ -88,7 +88,7 @@ void tela_equipe(void) {
 
 char menu_principal(void) {
     char op;
-    system("clear||cls");
+    system("clear");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
