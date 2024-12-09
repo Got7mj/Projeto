@@ -105,7 +105,8 @@ char menu_principal(void) {
     printf("///            1. Módulo Artista                                            ///\n");
     printf("///            2. Módulo Espetáculo                                         ///\n");
     printf("///            3. Módulo Ingresso                                           ///\n");
-    printf("///            4. Módulo Relatórios                                         ///\n");
+    printf("///            4. Módulo Usuario                                            ///\n");
+    printf("///            5. Módulo Relatorio                                          ///\n");	
     printf("///            0. Sair                                                      ///\n");
     printf("///                                                                         ///\n");
     printf("///            Escolher a opção desejada: ");  
