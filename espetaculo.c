@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "espetaculo.h"
-#include "tela.h"
 #include "biblioteca.h"
 
 typedef struct espetaculo Espetaculo;
