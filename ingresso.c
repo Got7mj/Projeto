@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "ingresso.h"
-#include "tela.h"
 #include "biblioteca.h"
 
 typedef struct ingresso Ingresso;
