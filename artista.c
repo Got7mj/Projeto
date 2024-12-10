@@ -71,22 +71,15 @@ do {
     scanf("%[^\n]", art->id);
     getchar();
 } while (!validarID(art->id)); 
-do{	
     printf("///            Nome completo:          ");
     scanf("%[^\n]", art->nome);
     getchar();
-} while(!validarNome(art->nome));
-do{
     printf("///            E-mail:                 ");
     scanf("%[^\n]", art->email);
     getchar();
-} while(!validarEmail(art->email));
-do {
-	printf("///           Celular  (apenas números com DDD): ");
-	scanf("%[^\n]", art->celular);
-	getchar();
-} while (!validarCelular(art->celular));
-do{
+    printf("///           Celular  (apenas números com DDD): ");
+    scanf("%[^\n]", art->celular);
+    getchar();
     printf("///            Cargo:                  ");
     scanf("%[^\n]", art->cargo);
     getchar();
@@ -273,7 +266,7 @@ void cadastrar_Artista(void) {
 
 void consultar_Artista(void) {
 	Artista *art;
-	char* id = NULL;
+	char* id;
 	art = buscar_Artista(id);
 	exibir_Artista(art);
 	free(art); 
@@ -283,7 +276,7 @@ void consultar_Artista(void) {
 
 void alterar_Artista(void) {
 	Artista *art;
-	char* id = NULL;
+	char* id;
 	art = buscar_Artista(id);
 	if (art == NULL) {
 		printf("\n\nArtista não encontrado!\n\n");
