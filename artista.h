@@ -17,7 +17,7 @@ Artista* tela_Preencher_Artista(void);
 char* tela_consultar_Artista(void);
 char* tela_alterar_Artista(void);
 char* tela_excluir_Artista(void);
-void tela_Erro_Arquivo(void);
+void tela_Erro_Arquivo_Artista(void);
 void gravar_Artista(Artista*);
 Artista* buscar_Artista(char*);
 void exibir_Artista(Artista*);
