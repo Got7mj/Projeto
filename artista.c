@@ -185,7 +185,7 @@ void gravar_Artista(Artista *art) {
 	FILE* fp;
 	fp = fopen("artistas.dat", "ab");
 	if (fp == NULL) {
-		tela_Erro_Arquivo();
+		tela_Erro_Arquivo_Artista();
 	}
 	fwrite(art, sizeof(Artista), 1, fp);
 	fclose(fp);
@@ -199,7 +199,7 @@ Artista* buscar_Artista(char* id) {
 	art = (Artista*) malloc(sizeof(Artista));
 	fp = fopen("artistas.dat", "rb");
 	if (fp == NULL) {
-		tela_Erro_Arquivo();
+		tela_Erro_Arquivo_Artista();
 	}
 	while(fread(art, sizeof(Artista), 1, fp)) {
 		if ((strcmp(art->id, id) == 0) && (art->status == True)) {
@@ -238,7 +238,7 @@ void regravar_Artista(Artista* art) {
 	art_Lido = (Artista*) malloc(sizeof(Artista));
 	fp = fopen("artistas.dat", "r+b");
 	if (fp == NULL) {
-		tela_Erro_Arquivo();
+		tela_Erro_Arquivo_Artista();
 	}
 	// while(!feof(fp)) {
 	achou = False;
