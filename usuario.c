@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "usuario.h"
-#include "tela.h"
 #include "biblioteca.h"
 
 
@@ -170,7 +169,7 @@ char* tela_excluir_Usuario(void) {
 }
 
 
-void tela_Erro_Arquivo(void) {
+void tela_Erro_Arquivo_Usuario(void) {
     limpaTela();
     printf("\n");
     printf("////////////////////////////////////////////////////////////////////////////\n");
