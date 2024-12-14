@@ -27,6 +27,62 @@ void modulo_Usuario(void) {
 }
 
 
+void cadastrar_Usuario(void) {
+	Usuario *usr;
+	usr = tela_cadastrar_Usuario();
+	gravar_Usuario(usr);
+	free(usr);
+}
+
+
+void consultar_Usuario(void) {
+	Usuario* usr;
+	char* id = NULL;
+	id = tela_consultar_Usuario();
+	usr = buscar_Usuario(id);
+	exibir_Usuario(usr);
+	free(usr); 
+	free(id);
+}
+
+
+void alterar_Usuario(void) {
+	Usuario* usr;
+	char* id = NULL;
+	id = tela_alterar_Usuario();
+	usr = buscar_Usuario(id);
+	if (usr == NULL) {
+		printf("\n\nUsuario não encontrado!\n\n");
+	} else {
+		usr = tela_cadastrar_Usuario();
+		strcpy(usr->id, id);
+		regravar_Usuario(usr);
+		// Outra opção:
+		// excluir_Usuario(id);
+		// gravar_Usuario(usr);
+		free(usr);
+	}
+	free(id);
+}
+
+void excluir_Usuario(void) {
+	Usuario* usr;
+	char* id;
+	id = tela_excluir_Usuario();
+	usr = (Usuario*) malloc(sizeof(Usuario));
+	usr = buscar_Usuario(id);
+	if (usr == NULL) {
+		printf("\n\nUsuario não encontrado!\n\n");
+	} else {
+		usr->status = False;
+		regravar_Usuario(usr);
+		free(usr);
+	}
+	free(id);
+}
+
+
+
 char menu_Usuario(void) {
     char op;
     limpaTela();
@@ -54,8 +110,9 @@ char menu_Usuario(void) {
     return op;
 }
 
-Usuario* tela_Preencher_Usuario(void) {
+Usuario* tela_cadastrar_Usuario(void) {
 	Usuario *usr;
+	usr = (Usuario*) malloc(sizeof(Usuario));
 	limpaTela();
 	printf("\n");
 	printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -63,8 +120,7 @@ Usuario* tela_Preencher_Usuario(void) {
 	printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
 	printf("///            = = = = = = = = Cadastrar Usuario = = = = = = =              ///\n");
 	printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-	printf("///                                                                         ///\n");  
-	usr = (Usuario*) malloc(sizeof(Usuario));
+	printf("///                                                                         ///\n");  	
 	do {
 		printf("///            ID (apenas números):    ");
 		scanf("%[^\n]", usr->id);
@@ -202,7 +258,6 @@ void gravar_Usuario(Usuario *usr) {
 Usuario* buscar_Usuario(char* id) {
 	FILE* fp;
 	Usuario* usr;
-
 	usr = (Usuario*) malloc(sizeof(Usuario));
 	fp = fopen("usuarios.dat", "rb");
 	if (fp == NULL) {
@@ -260,54 +315,4 @@ void regravar_Usuario(Usuario* usr) {
 	}
 	fclose(fp);
 	free(usr_Lido);
-}
-
-void cadastrar_Usuario(void) {
-	Usuario *usr;
-	usr = tela_Preencher_Usuario();
-	gravar_Usuario(usr);
-	free(usr);
-}
-
-void consultar_Usuario(void) {
-	Usuario *usr;
-	char* id = NULL;
-	usr = buscar_Usuario(id);
-	exibir_Usuario(usr);
-	free(usr); 
-	free(id);
-}
-
-void alterar_Usuario(void) {
-	Usuario *usr;
-	char* id = NULL;
-	usr = buscar_Usuario(id);
-	if (usr == NULL) {
-		printf("\n\nUsuario não encontrado!\n\n");
-	} else {
-		usr = tela_Preencher_Usuario();
-		strcpy(usr->id, id);
-		regravar_Usuario(usr);
-		// Outra opção:
-		// excluir_Usuario(id);
-		// gravar_Usuario(usr);
-		free(usr);
-	}
-	free(id);
-}
-
-void excluir_Usuario(void) {
-	Usuario *usr;
-	char* id;
-	id = tela_excluir_Usuario();
-	usr = (Usuario*) malloc(sizeof(Usuario));
-	usr = buscar_Usuario(id);
-	if (usr == NULL) {
-		printf("\n\nUsuario não encontrado!\n\n");
-	} else {
-		usr->status = False;
-		regravar_Usuario(usr);
-		free(usr);
-	}
-	free(id);
 }
