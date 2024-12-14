@@ -192,7 +192,7 @@ void gravar_Usuario(Usuario *usr) {
 	FILE* fp;
 	fp = fopen("usuarios.dat", "ab");
 	if (fp == NULL) {
-		tela_Erro_Arquivo();
+		tela_Erro_Arquivo_Usuario();
 	}
 	fwrite(usr, sizeof(Usuario), 1, fp);
 	fclose(fp);
@@ -206,7 +206,7 @@ Usuario* buscar_Usuario(char* id) {
 	usr = (Usuario*) malloc(sizeof(Usuario));
 	fp = fopen("usuarios.dat", "rb");
 	if (fp == NULL) {
-		tela_Erro_Arquivo();
+		tela_Erro_Arquivo_Usuario();
 	}
 	while(fread(usr, sizeof(Usuario), 1, fp)) {
 		if ((strcmp(usr->id, id) == 0) && (usr->status == True)) {
@@ -245,7 +245,7 @@ void regravar_Usuario(Usuario* usr) {
 	usr_Lido = (Usuario*) malloc(sizeof(Usuario));
 	fp = fopen("usuarios.dat", "r+b");
 	if (fp == NULL) {
-		tela_Erro_Arquivo();
+		tela_Erro_Arquivo_Usuario();
 	}
 	// while(!feof(fp)) {
 	achou = False;
