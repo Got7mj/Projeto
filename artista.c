@@ -284,30 +284,6 @@ void exibir_Artista(Artista* art) {
 	}
 	printf("\n\nTecle ENTER para continuar!\n\n");
 	getchar();
-}void regravarAluno(Aluno* aln) {
-	int achou;
-	FILE* fp;
-	Aluno* alnLido;
-
-	alnLido = (Aluno*) malloc(sizeof(Aluno));
-	fp = fopen("alunos.dat", "r+b");
-	if (fp == NULL) {
-		telaErroArquivo();
-		telaErroArquivoAluno();
-	}
-	// while(!feof(fp)) {
-	achou = False;
-	while(fread(alnLido, sizeof(Aluno), 1, fp) && !achou) {
-		//fread(alnLido, sizeof(Aluno), 1, fp);
-		if (strcmp(alnLido->matr, aln->matr) == 0) {
-			achou = True;
-			fseek(fp, -1*sizeof(Aluno), SEEK_CUR);
-        	fwrite(aln, sizeof(Aluno), 1, fp);
-			//break;
-		}
-	}
-	fclose(fp);
-	free(alnLido);
 }
 
 
