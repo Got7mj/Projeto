@@ -136,7 +136,7 @@ void tela_Erro_Arquivo_Ingresso(void) {
 void gravar_Ingresso(Ingresso *igs) {
     FILE* fp = fopen("ingressos.dat", "ab");
     if (fp == NULL) {
-        tela_Erro_Arquivo();
+        tela_Erro_Arquivo_Ingresso();
     }
     fwrite(igs, sizeof(Ingresso), 1, fp);
     fclose(fp);
@@ -150,12 +150,12 @@ Ingresso* buscar_Ingresso(char* id) {
     Ingresso* igs = (Ingresso*) malloc(sizeof(Ingresso));  // Aloca memória corretamente
     if (igs == NULL) {
         // Tratar erro de alocação de memória
-        tela_Erro_Arquivo();
+        tela_Erro_Arquivo_Ingresso();
     }
 
     fp = fopen("ingressos.dat", "rb");
     if (fp == NULL) {
-        tela_Erro_Arquivo();
+        tela_Erro_Arquivo_Ingresso();
     }
     
     while(fread(igs, sizeof(Ingresso), 1, fp)) {
@@ -190,7 +190,7 @@ void exibir_Ingresso(Ingresso* igs) {
 void regravar_Ingresso(Ingresso* igs) {
     FILE* fp = fopen("ingressos.dat", "r+b");
     if (fp == NULL) {
-        tela_Erro_Arquivo();
+        tela_Erro_Arquivo_Ingresso();
     }
     Ingresso* igs_Lido = (Ingresso*) malloc(sizeof(Ingresso));
     int achou = False;
