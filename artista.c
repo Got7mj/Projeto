@@ -10,20 +10,20 @@ typedef struct artista Artista;
 /// Funções do Módulo  
 
 void modulo_Artista(void) {
-    char opcao;
-    do {
-        opcao = menu_Artista();
-        switch(opcao) {
-            case '1': 	cadastrar_Artista();
-                        break;
-            case '2': 	consultar_Artista();
-                        break;
-            case '3': 	alterar_Artista();
-                        break;
-            case '4': 	excluir_Artista();
-                        break;
-        } 		
-    } while (opcao != '0');
+	char opcao;
+	do {
+		opcao = menu_Artista();
+		switch(opcao) {
+			case '1': 	cadastrar_Artista();
+					break;
+			case '2': 	consultar_Artista();
+					break;
+			case '3': 	alterar_Artista();
+					break;
+			case '4': 	excluir_Artista();
+					break;
+		} 
+	} while (opcao != '0');
 }
 
 
