@@ -13,7 +13,7 @@ int status;
 
 void modulo_Usuario(void);
 char menu_Usuario(void);
-Usuario* tela_Preencher_Usuario(void);
+Usuario* tela_cadastrar_Usuario(void);
 char* tela_consultar_Usuario(void);
 char* tela_alterar_Usuario(void);
 char* tela_excluir_Usuario(void);
