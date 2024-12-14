@@ -65,31 +65,33 @@ Artista* tela_Preencher_Artista(void) {
     printf("///            = = = = = = = = Cadastrar Artista = = = = = = =              ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
-	art = (Artista*) malloc(sizeof(Artista));
-do {
-    printf("///            ID (apenas números):    ");
-    scanf("%[^\n]", art->id);
-    getchar();
-} while (!validarID(art->id)); 
-    printf("///            Nome completo:          ");
-    scanf("%[^\n]", art->nome);
-    getchar();
-    printf("///            E-mail:                 ");
-    scanf("%[^\n]", art->email);
-    getchar();
-    printf("///           Celular  (apenas números com DDD): ");
-    scanf("%[^\n]", art->celular);
-    getchar();
-    printf("///            Cargo:                  ");
-    scanf("%[^\n]", art->cargo);
-    getchar();
-} while(!validarCargo(art->cargo));
-    printf("///                                                                         ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");    
-    delay(1);
-    return art;
+    art = (Artista*) malloc(sizeof(Artista));
+    do {
+	    printf("///            ID (apenas números):    ");
+	    scanf("%[^\n]", art->id);
+	    getchar();
+    } while (!validarID(art->id)); 
+	printf("///            Nome completo:          ");
+	scanf("%[^\n]", art->nome);
+	getchar();
+	printf("///            E-mail:                 ");
+	scanf("%[^\n]", art->email);
+	getchar();
+	printf("///           Celular  (apenas números com DDD): ");
+	scanf("%[^\n]", art->celular);
+	getchar();
+   do {
+	printf("///            Cargo:                  ");
+	scanf("%[^\n]", art->cargo);
+	getchar();
+   } while(!validarCargo(art->cargo));
+	art->status = True;
+	printf("///                                                                        ///\n");
+	printf("///                                                                        ///\n");
+	printf("//////////////////////////////////////////////////////////////////////////////\n");
+	printf("\n");  
+	delay(1);
+	return art;
 }
 
 
