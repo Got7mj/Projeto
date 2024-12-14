@@ -13,7 +13,7 @@ int status;
 
 void modulo_Artista(void);
 char menu_Artista(void);
-Artista* tela_Preencher_Artista(void);
+Artista* tela_cadastrar_Artista(void);
 char* tela_consultar_Artista(void);
 char* tela_alterar_Artista(void);
 char* tela_excluir_Artista(void);
