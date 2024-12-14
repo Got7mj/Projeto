@@ -27,6 +27,61 @@ void modulo_Artista(void) {
 }
 
 
+void cadastrar_Artista(void) {
+	Artista *art;
+	art = tela_cadastrar_Artista();
+	gravar_Artista(art);
+	free(art);
+}
+
+
+void consultar_Artista(void) {
+	Artista* art;
+	char* id;
+	id = tela_consultar_Artista();
+	art = buscar_Artista(id);
+	exibir_Artista(art);
+	free(art); 
+	free(id);
+}
+
+
+void alterar_Artista(void) {
+	Artista* art;
+	char* id;
+	id = tela_alterar_Artista();
+	art = buscar_Artista(id);
+	if (art == NULL) {
+		printf("\n\nArtista não encontrado!\n\n");
+	} else {
+		art = tela_cadastrar_Artista();
+		strcpy(art->id, id);
+		regravar_Artista(art);
+		// Outra opção:
+		// excluir_Artista(id);
+		// gravar_Artista(art);
+		free(art);
+	}
+	free(id);
+}
+
+
+void excluir_Artista(void) {
+	Artista* art;
+	char* id;
+	id = tela_excluir_Artista();
+	art = (Artista*) malloc(sizeof(Artista));
+	art = buscar_Artista(id);
+	if (art == NULL) {
+		printf("\n\nArtista não encontrado!\n\n");
+	} else {
+		art->status = False;
+		regravar_Artista(art);
+		free(art);
+	}
+	free(id);
+}
+
 char menu_Artista(void) {
     char op;
     limpaTela();
@@ -55,8 +110,9 @@ char menu_Artista(void) {
 }
 
 
-Artista* tela_Preencher_Artista(void) {
+Artista* tela_cadastrar_Artista(void) {
     Artista *art;
+    art = (Artista*) malloc(sizeof(Artista));
     limpaTela();
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -64,8 +120,7 @@ Artista* tela_Preencher_Artista(void) {
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///            = = = = = = = = Cadastrar Artista = = = = = = =              ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///                                                                         ///\n");
-    art = (Artista*) malloc(sizeof(Artista));
+    printf("///                                                                         ///\n");    
     do {
 	    printf("///            ID (apenas números):    ");
 	    scanf("%[^\n]", art->id);
@@ -143,7 +198,7 @@ char* tela_alterar_Artista(void) {
 
 char* tela_excluir_Artista(void) {
      char* id;
-    id = (char*) malloc(12*sizeof(char));
+     id = (char*) malloc(12*sizeof(char));
      limpaTela();
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -183,7 +238,7 @@ void tela_Erro_Arquivo_Artista(void) {
     exit(1);
 }
 
-void gravar_Artista(Artista *art) {
+void gravar_Artista(Artista* art) {
 	FILE* fp;
 	fp = fopen("artistas.dat", "ab");
 	if (fp == NULL) {
@@ -229,6 +284,30 @@ void exibir_Artista(Artista* art) {
 	}
 	printf("\n\nTecle ENTER para continuar!\n\n");
 	getchar();
+}void regravarAluno(Aluno* aln) {
+	int achou;
+	FILE* fp;
+	Aluno* alnLido;
+
+	alnLido = (Aluno*) malloc(sizeof(Aluno));
+	fp = fopen("alunos.dat", "r+b");
+	if (fp == NULL) {
+		telaErroArquivo();
+		telaErroArquivoAluno();
+	}
+	// while(!feof(fp)) {
+	achou = False;
+	while(fread(alnLido, sizeof(Aluno), 1, fp) && !achou) {
+		//fread(alnLido, sizeof(Aluno), 1, fp);
+		if (strcmp(alnLido->matr, aln->matr) == 0) {
+			achou = True;
+			fseek(fp, -1*sizeof(Aluno), SEEK_CUR);
+        	fwrite(aln, sizeof(Aluno), 1, fp);
+			//break;
+		}
+	}
+	fclose(fp);
+	free(alnLido);
 }
 
 
@@ -242,71 +321,14 @@ void regravar_Artista(Artista* art) {
 	if (fp == NULL) {
 		tela_Erro_Arquivo_Artista();
 	}
-	// while(!feof(fp)) {
 	achou = False;
 	while(fread(art_Lido, sizeof(Artista), 1, fp) && !achou) {
-		//fread(art_Lido, sizeof(Artista), 1, fp);
 		if (strcmp(art_Lido->id, art->id) == 0) {
 			achou = True;
 			fseek(fp, -1*sizeof(Artista), SEEK_CUR);
-        	fwrite(art, sizeof(Artista), 1, fp);
-			//break;
+			fwrite(art, sizeof(Artista), 1, fp);	
 		}
 	}
 	fclose(fp);
 	free(art_Lido);
-}
-
-
-void cadastrar_Artista(void) {
-	Artista *art;
-	art = tela_Preencher_Artista();
-	gravar_Artista(art);
-	free(art);
-}
-
-
-void consultar_Artista(void) {
-	Artista *art;
-	char* id;
-	art = buscar_Artista(id);
-	exibir_Artista(art);
-	free(art); 
-	free(id);
-}
-
-
-void alterar_Artista(void) {
-	Artista *art;
-	char* id;
-	art = buscar_Artista(id);
-	if (art == NULL) {
-		printf("\n\nArtista não encontrado!\n\n");
-	} else {
-		art = tela_Preencher_Artista();
-		strcpy(art->id, id);
-		regravar_Artista(art);
-		// Outra opção:
-		// excluir_Artista(id);
-		// gravar_Artista(art);
-		free(art);
-	}
-	free(id);
-}
-
-
-void excluir_Artista(void) {
-	Artista *art;
-	char* id;
-	id = tela_excluir_Artista();
-	art = (Artista*) malloc(sizeof(Artista));
-	art = buscar_Artista(id);
-	if (art == NULL) {
-		printf("\n\nArtista não encontrado!\n\n");
-	} else {
-		art->status = False;
-		regravar_Artista(art);
-		free(art);
-	}
-	free(id);
 }
