@@ -181,7 +181,7 @@ void gravar_Espetaculo(Espetaculo *est) {
 	FILE* fp;
 	fp = fopen("espetaculos.dat", "ab");
 	if (fp == NULL) {
-		tela_Erro_Arquivo();
+		tela_Erro_Arquivo_Espetaculo();
 	}
 	fwrite(est, sizeof(Espetaculo), 1, fp);
 	fclose(fp);
@@ -195,7 +195,7 @@ Espetaculo* buscar_Espetaculo(char* id) {
 	est = (Espetaculo*) malloc(sizeof(Espetaculo));
 	fp = fopen("espetaculos.dat", "rb");
 	if (fp == NULL) {
-		tela_Erro_Arquivo();
+		tela_Erro_Arquivo_Espetaculo();
 	}
 	while(fread(est, sizeof(Espetaculo), 1, fp)) {
 		if ((strcmp(est->id, id) == 0) && (est->status == True)) {
@@ -232,7 +232,7 @@ void regravar_Espetaculo(Espetaculo* est) {
 	est_Lido = (Espetaculo*) malloc(sizeof(Espetaculo));
 	fp = fopen("espetaculos.dat", "r+b");
 	if (fp == NULL) {
-		tela_Erro_Arquivo();
+		tela_Erro_Arquivo_Espetaculo();
 	}
 	// while(!feof(fp)) {
 	achou = False;
