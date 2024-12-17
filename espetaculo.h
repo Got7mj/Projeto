@@ -7,6 +7,7 @@ char horario[9];
 int status;
 };
 
+
 void modulo_Espetaculo(void);
 char menu_Espetaculo(void);
 Espetaculo* tela_cadastrar_Espetaculo(void);
