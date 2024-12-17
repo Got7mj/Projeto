@@ -24,6 +24,57 @@ void modulo_Espetaculo(void) {
 }
 
 
+void cadastrar_Espetaculo(void) {
+	Espetaculo *est;
+	est = tela_cadastrar_Espetaculo();
+	gravar_Espetaculo(est);
+	free(est);
+}  
+
+void consultar_Espetaculo(void) {
+	Espetaculo* est;
+	char* id = NULL;
+	id = tela_consultar_Espetaculo();
+	est = buscar_Espetaculo(id);
+	exibir_Espetaculo(est);
+	free(est); 
+	free(id);
+}
+
+void alterar_Espetaculo(void) {
+	Espetaculo* est;
+	char* id = NULL;
+	id = tela_alterar_Espetaculo();
+	est = buscar_Espetaculo(id);
+	if (est == NULL) {
+		printf("\n\nEspetaculo não encontrado!\n\n");
+	} else {
+		est = tela_cadastrar_Espetaculo();
+		strcpy(est->id, id);
+		regravar_Espetaculo(est);		
+		free(est);
+	}
+	free(id);
+}
+
+void excluir_Espetaculo(void) {
+	Espetaculo* est;
+	char* id;
+	id = tela_excluir_Espetaculo();
+	est = (Espetaculo*) malloc(sizeof(Espetaculo));
+	est = buscar_Espetaculo(id);
+	if (est == NULL) {
+		printf("\n\nEspetaculo não encontrado!\n\n");
+	} else {
+		est->status = False;
+		regravar_Espetaculo(est);
+		free(est);
+	}
+	free(id);
+}
+
+
+
 char menu_Espetaculo(void) {
     char op;
     limpaTela();
@@ -52,8 +103,9 @@ char menu_Espetaculo(void) {
 }
 
 
-Espetaculo* tela_Preencher_Espetaculo(void) {
+Espetaculo* tela_cadastrar_Espetaculo(void) {
     Espetaculo *est;
+    est = (Espetaculo*) malloc(sizeof(Espetaculo));
     limpaTela();
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -62,7 +114,6 @@ Espetaculo* tela_Preencher_Espetaculo(void) {
     printf("///            = = = = = = = Cadastrar Espetáculo = = = = = =               ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
-est = (Espetaculo*) malloc(sizeof(Espetaculo));
 do {
     printf("///            ID (apenas números):    ");
     scanf("%[^\n]", est->id);
@@ -78,6 +129,7 @@ do {
     scanf("%[^\n]", est->horario);
     getchar();
 } while(!validarHorario(est->horario)); 
+    est->status = True;
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -175,8 +227,6 @@ void tela_Erro_Arquivo_Espetaculo(void) {
     exit(1);
 }
 
-
-
 void gravar_Espetaculo(Espetaculo *est) {
 	FILE* fp;
 	fp = fopen("espetaculos.dat", "ab");
@@ -187,11 +237,9 @@ void gravar_Espetaculo(Espetaculo *est) {
 	fclose(fp);
 }
 
-
 Espetaculo* buscar_Espetaculo(char* id) {
 	FILE* fp;
 	Espetaculo* est;
-
 	est = (Espetaculo*) malloc(sizeof(Espetaculo));
 	fp = fopen("espetaculos.dat", "rb");
 	if (fp == NULL) {
@@ -209,7 +257,6 @@ Espetaculo* buscar_Espetaculo(char* id) {
 
 
 void exibir_Espetaculo(Espetaculo* est) {
-
 	if (est == NULL) {
 		printf("\n= = = Espetaculo Inexistente = = =\n");
 	} else {
@@ -222,81 +269,47 @@ void exibir_Espetaculo(Espetaculo* est) {
 	printf("\n\nTecle ENTER para continuar!\n\n");
 	getchar();
 }
+void regravar_Usuario(Usuario* usr) {
+	int achou;
+	FILE* fp;
+	Usuario* usr_Lido;
 
+	usr_Lido = (Usuario*) malloc(sizeof(Usuario));
+	fp = fopen("usuarios.dat", "r+b");
+	if (fp == NULL) {
+		tela_Erro_Arquivo_Usuario();
+	}
+	// while(!feof(fp)) {
+	achou = False;
+	while(fread(usr_Lido, sizeof(Usuario), 1, fp) && !achou) {
+		//fread(usr_Lido, sizeof(Usuario), 1, fp);
+		if (strcmp(usr_Lido->id, usr->id) == 0) {
+			achou = True;
+			fseek(fp, -1*sizeof(Usuario), SEEK_CUR);
+        	fwrite(usr, sizeof(Usuario), 1, fp);
+			//break;
+		}
+	}
+	fclose(fp);
+	free(usr_L
 
 void regravar_Espetaculo(Espetaculo* est) {
 	int achou;
 	FILE* fp;
 	Espetaculo* est_Lido;
-
 	est_Lido = (Espetaculo*) malloc(sizeof(Espetaculo));
 	fp = fopen("espetaculos.dat", "r+b");
 	if (fp == NULL) {
 		tela_Erro_Arquivo_Espetaculo();
 	}
-	// while(!feof(fp)) {
-	achou = False;
-	while(fread(est_Lido, sizeof(Espetaculo), 1, fp) && !achou) {
-		//fread(est_Lido, sizeof(Espetaculo), 1, fp);
-		if (strcmp(est_Lido->id, est->id) == 0) {
-			achou = True;
-			fseek(fp, -1*sizeof(Espetaculo), SEEK_CUR);
-        	fwrite(est, sizeof(Espetaculo), 1, fp);
-			//break;
+		achou = False;
+		while(fread(est_Lido, sizeof(Espetaculo), 1, fp) && !achou) {		
+			if (strcmp(est_Lido->id, est->id) == 0) {
+				achou = True;
+				fseek(fp, -1*sizeof(Espetaculo), SEEK_CUR);
+				fwrite(est, sizeof(Espetaculo), 1, fp);
+			}
 		}
+		fclose(fp);
+		free(est_Lido);
 	}
-	fclose(fp);
-	free(est_Lido);
-}
-
-
-
-void cadastrar_Espetaculo(void) {
-	Espetaculo *est;
-	est = tela_Preencher_Espetaculo();
-	gravar_Espetaculo(est);
-	free(est);
-}  
-
-void consultar_Espetaculo(void) {
-	Espetaculo *est;
-	char* id = NULL;
-	est = buscar_Espetaculo(id);
-	exibir_Espetaculo(est);
-	free(est); 
-	free(id);
-}
-
-void alterar_Espetaculo(void) {
-	Espetaculo *est;
-	char* id = NULL;
-	est = buscar_Espetaculo(id);
-	if (est == NULL) {
-		printf("\n\nEspetaculo não encontrado!\n\n");
-	} else {
-		est = tela_Preencher_Espetaculo();
-		strcpy(est->id, id);
-		regravar_Espetaculo(est);
-		// Outra opção:
-		// excluir_Espetaculo(id);
-		// gravar_Espetaculo(est);
-		free(est);
-	}
-	free(id);
-}
-
-void excluir_Espetaculo(void) {
-	Espetaculo *est;
-	char* id;
-	id = tela_excluir_Espetaculo();
-	est = (Espetaculo*) malloc(sizeof(Espetaculo));
-	est = buscar_Espetaculo(id);
-	if (est == NULL) {
-		printf("\n\nEspetaculo não encontrado!\n\n");
-	} else {
-		est->status = False;
-		regravar_Espetaculo(est);
-		free(est);
-	}
-	free(id);
-}
