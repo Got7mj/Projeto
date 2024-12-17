@@ -11,7 +11,7 @@ int status;
 
 void modulo_Ingresso(void);
 char menu_Ingresso(void);
-Ingresso* tela_Preencher_Ingresso(void);
+Ingresso* tela_comprar_Ingresso(void);
 char* tela_reembolsar_Ingresso(void);
 void tela_Erro_Arquivo_Ingresso(void);
 void gravar_Ingresso(Ingresso*);
