@@ -269,29 +269,7 @@ void exibir_Espetaculo(Espetaculo* est) {
 	printf("\n\nTecle ENTER para continuar!\n\n");
 	getchar();
 }
-void regravar_Usuario(Usuario* usr) {
-	int achou;
-	FILE* fp;
-	Usuario* usr_Lido;
 
-	usr_Lido = (Usuario*) malloc(sizeof(Usuario));
-	fp = fopen("usuarios.dat", "r+b");
-	if (fp == NULL) {
-		tela_Erro_Arquivo_Usuario();
-	}
-	// while(!feof(fp)) {
-	achou = False;
-	while(fread(usr_Lido, sizeof(Usuario), 1, fp) && !achou) {
-		//fread(usr_Lido, sizeof(Usuario), 1, fp);
-		if (strcmp(usr_Lido->id, usr->id) == 0) {
-			achou = True;
-			fseek(fp, -1*sizeof(Usuario), SEEK_CUR);
-        	fwrite(usr, sizeof(Usuario), 1, fp);
-			//break;
-		}
-	}
-	fclose(fp);
-	free(usr_L
 
 void regravar_Espetaculo(Espetaculo* est) {
 	int achou;
