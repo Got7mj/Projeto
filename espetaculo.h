@@ -9,7 +9,7 @@ int status;
 
 void modulo_Espetaculo(void);
 char menu_Espetaculo(void);
-Espetaculo* tela_Preencher_Espetaculo(void);
+Espetaculo* tela_cadastrar_Espetaculo(void);
 char* tela_consultar_Espetaculo(void);
 char* tela_alterar_Espetaculo(void);
 char* tela_excluir_Espetaculo(void);
