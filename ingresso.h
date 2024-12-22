@@ -4,7 +4,7 @@ struct ingresso {
     char id[12];    
     float preco;
     int quantidade;  // Quantidade como int
-    char status[10]; // Status como string
+    int status; 
 };
 
 void modulo_Ingresso(void);
