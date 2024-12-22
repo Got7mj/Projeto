@@ -7,7 +7,7 @@ char id[12];
 char nome[51]; 
 char email[30];
 char celular[12];
-char cargo[30];
+char cargo[20];
 int status;
 };
 
