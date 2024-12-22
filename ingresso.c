@@ -20,6 +20,7 @@ void modulo_Ingresso(void) {
 }
 
 
+
 void comprar_Ingresso(void) {
 	Ingresso *igs;
 	igs = tela_comprar_Ingresso();
@@ -48,7 +49,7 @@ void reembolsar_Ingresso(void) {
     scanf("%d", &quantidade);
 
     while (fread(&igs, sizeof(Ingresso), 1, fp)) {
-        if (strcmp(*igs.quantidade >= quantidade && strcmp(igs.status, ATIVO) == 0) {
+        if (*igs.quantidade >= quantidade && strcmp(igs.status, ATIVO) == 0) {
             // Marca o ingresso como reembolsado
             *igs.quantidade -= quantidade;
             strcpy(igs.status, REEMBOLSADO);
@@ -220,27 +221,4 @@ void exibir_Ingresso(Ingresso *igs) {
     }
 	printf("\n\nTecle ENTER para continuar!\n\n");
 	getchar();
-}
-
-
-void regravar_Ingresso(Ingresso* igs) {
-	FILE* fp = fopen("ingressos.dat", "r+b");
-	if (fp == NULL) {
-		tela_Erro_Arquivo_Ingresso();
-	}
-	Ingresso* igs_Lido = (Ingresso*) malloc(sizeof(Ingresso));
-	int achou = False;
-	while(fread(igs_Lido, sizeof(Ingresso), 1, fp)) {
-		if (strcmp(igs_Lido->id, igs->id) == 0) {
-			achou = True;
-			fseek(fp, -1 * sizeof(Ingresso), SEEK_CUR);  
-			fwrite(igs, sizeof(Ingresso), 1, fp);
-			break;
-		}
-	}
-	if (!achou) {
-		printf("Ingresso não encontrado para atualização.\n");
-	}
-	fclose(fp);
-	free(igs_Lido); 
 }
