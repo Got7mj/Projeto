@@ -122,24 +122,30 @@ Artista* tela_cadastrar_Artista(void) {
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");    
     do {
-        printf("///            ID (apenas números):    ");
-        scanf("%11[0-9]", art->id);  // Limita a 11 caracteres para o ID
-        getchar();
+	    printf("///            ID (apenas números):    ");
+	    scanf("%[^\n]", art->id);
+	    getchar();
     } while (!validarID(art->id)); 
-    printf("///            Nome completo:          ");
-    scanf("%[^\n]", art->nome);
-    getchar();
-    printf("///            E-mail:                 ");
-    scanf("%[^\n]", art->email);
-    getchar();
-    printf("///           Celular  (apenas números com DDD): ");
-    scanf("%[^\n]", art->celular);
-    getchar();
-    do {
-        printf("///            Cargo:                  ");
-        scanf("%[^\n]", art->cargo);
-        getchar();
-    } while(!validarCargo(art->cargo));
+	do{	
+		printf("///            Nome completo:          ");
+		scanf("%[^\n]", art->nome);
+		getchar();
+	} while(!validarNome(art->nome));
+	do{
+		printf("///            E-mail:                 ");
+		scanf("%[^\n]", art->email);
+		getchar();
+	} while(!validarEmail(art->email));
+	do {
+		printf("///           Celular  (apenas números com DDD): ");
+		scanf("%[^\n]", art->celular);
+		getchar();
+	} while (!validarCelular(art->celular));
+	do{
+		printf("///            Cargo:                  ");
+		scanf("%[^\n]", art->cargo);
+		getchar();
+	} while(!validarCargo(art->cargo));
     art->status = True;
     printf("///                                                                        ///\n");
     printf("///                                                                        ///\n");
