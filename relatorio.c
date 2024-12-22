@@ -154,7 +154,7 @@ void listar_Usuarios(void) {
         printf("Nome: %s\n", usr->nome);  
         printf("E-mail: %s\n", usr->email);  
         printf("Celular: %s\n", usr->celular);  
-        printf("Nasc: %d\n", usr->idade);  
+        printf("Nasc: %d\n", usr->nasc);  
         printf("-------------------------------------------------\n");
     }
     fclose(fp);
@@ -184,7 +184,6 @@ void listar_Artistas_Com_Filtro(void) {
 			printf("-------------------------------------------------\n");
 		}
 	}
-	break;
 	fclose(fp);
 	free(art);
 }
@@ -193,44 +192,13 @@ void listar_Artistas_Com_Filtro(void) {
 void listar_Espetaculos_Com_Filtro(void) {
     FILE *fp;
     Espetaculo *est;
-    int id_filtro;
-    char data_filtro[11], horario_filtro[6];
-    char opcao;
-
-    printf("Escolha o filtro:\n");
-    printf("1. Filtrar por ID\n");
-    printf("2. Filtrar por Data\n");
-    printf("3. Filtrar por Horário\n");
-    printf("4. Listar todos\n");
-    printf("Opção: ");
-    scanf(" %c", &opcao);
-    
     fp = fopen("espetaculos.dat", "rb");
     if (fp == NULL) {
         printf("Erro ao abrir arquivo de espetáculos.\n");
         return;
     }
-
     est = (Espetaculo*)malloc(sizeof(Espetaculo));
-
-    switch (opcao) {
-        case '1':  // Filtro por ID
-            printf("Digite o ID do Espetáculo: ");
-            scanf("%d", &id_filtro);
-            while (fread(est, sizeof(Espetaculo), 1, fp)) {
-                if (est->id == id_filtro) {
-                    printf("ID: %d\n", est->id);
-                    printf("Data: %s\n", est->data);
-                    printf("Horario: %s\n", est->horario);
-                    printf("-------------------------------------------------\n");
-                }
-            }
-            break;
-        
-        case '2':  // Filtro por Data
-            printf("Digite a Data (DD/MM/AAAA): ");
-            scanf("%s", data_filtro);
-            while (fread(est, sizeof(Espetaculo), 1, fp)) {
+	while (fread(est, sizeof(Espetaculo), 1, fp)) {
                 if (strcmp(est->data, data_filtro) == 0) {
                     printf("ID: %d\n", est->id);
                     printf("Data: %s\n", est->data);
@@ -238,37 +206,8 @@ void listar_Espetaculos_Com_Filtro(void) {
                     printf("-------------------------------------------------\n");
                 }
             }
-            break;
-
-        case '3':  // Filtro por Horário
-            printf("Digite o Horário (HH:MM): ");
-            scanf("%s", horario_filtro);
-            while (fread(est, sizeof(Espetaculo), 1, fp)) {
-                if (strcmp(est->horario, horario_filtro) == 0) {
-                    printf("ID: %d\n", est->id);
-                    printf("Data: %s\n", est->data);
-                    printf("Horario: %s\n", est->horario);
-                    printf("-------------------------------------------------\n");
-                }
-            }
-            break;
-
-        case '4':  // Listar todos
-            while (fread(est, sizeof(Espetaculo), 1, fp)) {
-                printf("ID: %d\n", est->id);
-                printf("Data: %s\n", est->data);
-                printf("Horario: %s\n", est->horario);
-                printf("-------------------------------------------------\n");
-            }
-            break;
-        
-        default:
-            printf("Opção inválida!\n");
-            break;
-    }
-
-    fclose(fp);
-    free(est);
+	fclose(fp);
+	free(est);
 }
 
 void listar_Ingressos_Com_Filtro(void) {
@@ -292,71 +231,7 @@ void listar_Ingressos_Com_Filtro(void) {
     }
     fclose(fp);
 }
-//ou
 
-
-//void listar_Ingressos_Com_Filtro(void) {
-//    FILE *fp;
-//    Ingresso *igs;
-//    float preco_filtro;
-//    int quantidade_filtro;
-//    char opcao;
-//    printf("Escolha o filtro:\n");
-//    printf("1. Filtrar por Preço\n");
-//    printf("2. Filtrar por Quantidade\n");
-//    printf("3. Listar todos\n");
-//    printf("Opção: ");
-//    scanf(" %c", &opcao);    
-//    fp = fopen("ingressos.dat", "rb");
-//    if (fp == NULL) {
-//        printf("Erro ao abrir arquivo de ingressos.\n");
-//        return;
-//    }
-//    igs = (Ingresso*)malloc(sizeof(Ingresso));
-//    switch (opcao) {
-//        case '1':  // Filtro por Preço
-//            printf("Digite o Preço: ");
-//            scanf("%f", &preco_filtro);
-//            while (fread(igs, sizeof(Ingresso), 1, fp)) {
-//                if (igs->preco == preco_filtro) {
-//                    printf("ID: %d\n", igs->id);
-//                    printf("Quantidade: %d\n", igs->quantidade);
-//                    printf("Preço: %.2f\n", igs->preco);
-//                    printf("-------------------------------------------------\n");
-//                }
-//            }
-//            break;
-
-//        case '2':  // Filtro por Quantidade
-//            printf("Digite a Quantidade: ");
-//            scanf("%d", &quantidade_filtro);
-//            while (fread(igs, sizeof(Ingresso), 1, fp)) {
-//                if (igs->quantidade == quantidade_filtro) {
-//                    printf("ID: %d\n", igs->id);
-//                    printf("Quantidade: %d\n", igs->quantidade);
-//                    printf("Preço: %.2f\n", igs->preco);
-//                    printf("-------------------------------------------------\n");
-//                }
-//            }
-//            break;
-
-//        case '3':  // Listar todos
-//            while (fread(igs, sizeof(Ingresso), 1, fp)) {
-//                printf("ID: %d\n", igs->id);
-//                printf("Quantidade: %d\n", igs->quantidade);
-//                printf("Preço: %.2f\n", igs->preco);
-//                printf("-------------------------------------------------\n");
-//            }
-//            break;
-        
-//        default:
-//            printf("Opção inválida!\n");
-//            break;
-//    }
-
-//    fclose(fp);
-//    free(igs);
-//}
 
 void listar_Usuarios_Com_Filtro(void) {
     FILE *fp;
@@ -379,11 +254,10 @@ void listar_Usuarios_Com_Filtro(void) {
 			printf("Nome: %s\n", usr->nome);
 			printf("E-mail: %s\n", usr->email);
 			printf("Celular: %s\n", usr->celular);
-			printf("Idade: %d\n", usr->idade);
+			printf("Nasc: %d\n", usr->nasc);
 			printf("-------------------------------------------------\n");
 		}
-	}
-	break;
+	}	
 	fclose(fp);
 	free(usr);
 }
