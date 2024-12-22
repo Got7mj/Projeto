@@ -284,9 +284,9 @@ void listar_Ingressos_Com_Filtro(void) {
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///             Lista de Ingressos (Com Filtro - Quantidade > 10)           ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("Tipo: %s\n", igs.tipo);
-    printf("Quantidade: %d\n", igs.quantidade);
-    printf("Preço: %.2f\n", igs.preco);
+    printf("Id: %s\n", igs->id);
+    printf("Quantidade: %d\n", igs->quantidade);
+    printf("Preço: %.2f\n", igs->preco);
     printf("-------------------------------------------------\n");
 	    }
     }
