@@ -18,7 +18,5 @@ void tela_Erro_Arquivo_Ingresso(void);
 void gravar_Ingresso(Ingresso *igs);
 Ingresso* buscar_Ingresso(char*);
 void exibir_Ingresso(Ingresso *igs); 
-void regravar_Ingresso(Ingresso*);
 void comprar_Ingresso(void);
 void reembolsar_Ingresso(void);
-
