@@ -266,21 +266,13 @@ int validarHorario(char* horario) {
 
 
 ////// Função para validar preço/////////////
-int validarPreco(const char* preco) {
-    char* end;
-    double valor = strtod(preco, &end);
-    // Verifica se o valor é positivo e se não há caracteres inválidos
-    if (valor < 0 || *end != '\0') {
-        return 0; // Preço inválido
+int validarPreco(float preco) {
+    if (preco > 0) {
+        return 1; // Preço válido
     }
-    // Verifica se tem no máximo duas casas decimais
-    char* ponto = strchr(preco, '.');
-    if (ponto) {
-        if (strlen(ponto + 1) > 2) {
-            return 0; // Mais de duas casas decimais
-        }
-    }
-    return 1; // Preço válido
+    else {
+    return 0;
+  }
 }
 
 
