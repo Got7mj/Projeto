@@ -16,5 +16,5 @@ int validarNasc(char*);
 int validarID(char*);
 int validarCargo(char*);
 int validarHorario(char*);
-int validarPreco(const char*);
+int validarPreco(float);
 int validarQuantidade(int);
