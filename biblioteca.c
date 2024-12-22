@@ -288,4 +288,7 @@ int validarPreco(const char* preco) {
 int validarQuantidade(int quantidade) {
     if (quantidade > 0) {
         return 1;  // Quantidade válida
-    }
+    }else {
+    return 0;
+  }
+}
