@@ -1,11 +1,12 @@
-/// Assinatura das funções
+#define ATIVO "ativo"
+#define REEMBOLSADO "reembolsado"
 
 typedef struct ingresso Ingresso;
 
 struct ingresso {
-    char id[12];        
-    char preco[8];     
-    int quantidade[3];     
+    char id[12];   
+    int *quantidade;        
+    float preco;  
 int status;
 };
 
@@ -14,9 +15,9 @@ char menu_Ingresso(void);
 Ingresso* tela_comprar_Ingresso(void);
 char* tela_reembolsar_Ingresso(void);
 void tela_Erro_Arquivo_Ingresso(void);
-void gravar_Ingresso(Ingresso*);
+void gravar_Ingresso(Ingresso *igs);
 Ingresso* buscar_Ingresso(char*);
-void exibir_Ingresso(Ingresso*);
+void exibir_Ingresso(Ingresso *igs); 
 void regravar_Ingresso(Ingresso*);
 void comprar_Ingresso(void);
 void reembolsar_Ingresso(void);
