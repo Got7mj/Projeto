@@ -20,34 +20,6 @@ void modulo_Ingresso(void) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-typedef struct ingresso Ingresso;
-
-void modulo_Ingresso(void) {
-    char opcao;
-    do {
-        opcao = menu_Ingresso();
-        switch(opcao) {
-            case '1': 	comprar_Ingresso();
-                        break;
-            case '2': 	reembolsar_Ingresso();
-                        break;            
-        } 		
-    } while (opcao != '0');
-}
-
-
 void comprar_Ingresso(void) {
 	Ingresso *igs;
 	igs = tela_comprar_Ingresso();
@@ -57,18 +29,45 @@ void comprar_Ingresso(void) {
 
 
 void reembolsar_Ingresso(void) {
-    Ingresso *igs;
-    char* id = NULL;
-    id = tela_reembolsar_Ingresso();  
-    igs = buscar_Ingresso(id);
-    if (igs == NULL) {
-        printf("\n\nIngresso não encontrado!\n\n");
-    } else {
-        igs = tela_comprar_Ingresso();
-        strcpy(igs->id, id);  
-        regravar_Ingresso(igs);
+    FILE *fp, *fpTemp;
+    Ingresso igs;
+    int quantidade, encontrado = 0;
+    fp = fopen("ingressos.dat", "rb");
+    if (fp == NULL) {
+        tela_Erro_Arquivo_Ingresso();
     }
-    free(id);  
+
+    fpTemp = fopen("temp.dat", "wb");
+    if (fpTemp == NULL) {
+        tela_Erro_Arquivo_Ingresso();
+        fclose(fp);
+        return;
+    }
+
+    printf("Digite a quantidade de ingressos a serem reembolsados: ");
+    scanf("%d", &quantidade);
+
+    while (fread(&igs, sizeof(Ingresso), 1, fp)) {
+        if (strcmp(*igs.quantidade >= quantidade && strcmp(igs.status, ATIVO) == 0) {
+            // Marca o ingresso como reembolsado
+            *igs.quantidade -= quantidade;
+            strcpy(igs.status, REEMBOLSADO);
+            encontrado = 1;
+        }
+        fwrite(&igs, sizeof(Ingresso), 1, fpTemp);
+    }
+
+    fclose(fp);
+    fclose(fpTemp);
+
+    if (encontrado) {
+        remove("ingressos.dat");
+        rename("temp.dat", "ingressos.dat");
+        printf("Reembolso efetuado com sucesso!\n");
+    } else {
+        remove("temp.dat");
+        printf("Ingresso não encontrado ou quantidade insuficiente para reembolso.\n");
+    }
 }
 
 
@@ -221,49 +220,6 @@ void exibir_Ingresso(Ingresso *igs) {
     }
 	printf("\n\nTecle ENTER para continuar!\n\n");
 	getchar();
-}
-
-// Função para reembolsar ingresso
-void reembolsar_Ingresso(void) {
-    FILE *fp, *fpTemp;
-    Ingresso igs;
-    int quantidade, encontrado = 0;
-    fp = fopen("ingressos.dat", "rb");
-    if (fp == NULL) {
-        tela_Erro_Arquivo_Ingresso();
-    }
-
-    fpTemp = fopen("temp.dat", "wb");
-    if (fpTemp == NULL) {
-        tela_Erro_Arquivo_Ingresso();
-        fclose(fp);
-        return;
-    }
-
-    printf("Digite a quantidade de ingressos a serem reembolsados: ");
-    scanf("%d", &quantidade);
-
-    while (fread(&igs, sizeof(Ingresso), 1, fp)) {
-        if (strcmp(*igs.quantidade >= quantidade && strcmp(igs.status, ATIVO) == 0) {
-            // Marca o ingresso como reembolsado
-            *igs.quantidade -= quantidade;
-            strcpy(igs.status, REEMBOLSADO);
-            encontrado = 1;
-        }
-        fwrite(&igs, sizeof(Ingresso), 1, fpTemp);
-    }
-
-    fclose(fp);
-    fclose(fpTemp);
-
-    if (encontrado) {
-        remove("ingressos.dat");
-        rename("temp.dat", "ingressos.dat");
-        printf("Reembolso efetuado com sucesso!\n");
-    } else {
-        remove("temp.dat");
-        printf("Ingresso não encontrado ou quantidade insuficiente para reembolso.\n");
-    }
 }
 
 
