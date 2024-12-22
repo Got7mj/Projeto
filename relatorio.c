@@ -17,6 +17,6 @@ void delay(int);
 void modulo_Relatorio(void) {
 	// modulo em desenvolvimento
 }
-void menu_Relatorio() {
+char menu_Relatorio() {
     // Implementação da função
 }
