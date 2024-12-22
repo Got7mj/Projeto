@@ -115,6 +115,6 @@ char menu_principal(void) {
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     printf("\t\t\t<<< ... Aguarde ... >>>\n");
-    sleep(1);
+    delay(1);
     return op;
 }
