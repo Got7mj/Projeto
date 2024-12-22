@@ -4,8 +4,8 @@ typedef struct ingresso Ingresso;
 
 struct ingresso {
     char id[12];        
-    char preco[12];     
-    int quantidade;     
+    char preco[8];     
+    int quantidade[3];     
 int status;
 };
 
