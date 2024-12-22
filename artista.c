@@ -5,25 +5,26 @@
 #include "biblioteca.h"
 
 
+
 typedef struct artista Artista;
 
 /// Funções do Módulo  
 
 void modulo_Artista(void) {
-	char opcao;
-	do {
-		opcao = menu_Artista();
-		switch(opcao) {
-			case '1': 	cadastrar_Artista();
-					break;
-			case '2': 	consultar_Artista();
-					break;
-			case '3': 	alterar_Artista();
-					break;
-			case '4': 	excluir_Artista();
-					break;
-		} 
-	} while (opcao != '0');
+    char opcao;
+    do {
+        opcao = menu_Artista();
+        switch(opcao) {
+            case '1':  cadastrar_Artista();
+                    break;
+            case '2':  consultar_Artista();
+                    break;
+            case '3':  alterar_Artista();
+                    break;
+            case '4':  excluir_Artista();
+                    break;
+        } 
+    } while (opcao != '0');
 }
 
 
@@ -35,52 +36,51 @@ void cadastrar_Artista(void) {
 }
 
 
+
 void consultar_Artista(void) {
-	Artista* art;
-	char* id;
-	id = tela_consultar_Artista();
-	art = buscar_Artista(id);
-	exibir_Artista(art);
-	free(art); 
-	free(id);
+    Artista* art;
+    char* id;
+    id = tela_consultar_Artista();
+    art = buscar_Artista(id);
+    exibir_Artista(art);
+    free(art); 
+    free(id);
 }
 
 
+
 void alterar_Artista(void) {
-	Artista* art;
-	char* id;
-	id = tela_alterar_Artista();
-	art = buscar_Artista(id);
-	if (art == NULL) {
-		printf("\n\nArtista não encontrado!\n\n");
-	} else {
-		art = tela_cadastrar_Artista();
-		strcpy(art->id, id);
-		regravar_Artista(art);
-		// Outra opção:
-		// excluir_Artista(id);
-		// gravar_Artista(art);
-		free(art);
-	}
-	free(id);
+    Artista* art;
+    char* id;
+    id = tela_alterar_Artista();
+    art = buscar_Artista(id);
+    if (art == NULL) {
+        printf("\n\nArtista não encontrado!\n\n");
+    } else {
+        Artista* novoArtista = tela_cadastrar_Artista();
+        strcpy(novoArtista->id, id); 
+        regravar_Artista(novoArtista);
+        free(novoArtista);
+    }
+    free(id);
 }
 
 
 void excluir_Artista(void) {
-	Artista* art;
-	char* id;
-	id = tela_excluir_Artista();
-	art = (Artista*) malloc(sizeof(Artista));
-	art = buscar_Artista(id);
-	if (art == NULL) {
-		printf("\n\nArtista não encontrado!\n\n");
-	} else {
-		art->status = False;
-		regravar_Artista(art);
-		free(art);
-	}
-	free(id);
+    Artista* art;
+    char* id;
+    id = tela_excluir_Artista();
+    art = buscar_Artista(id);
+    if (art == NULL) {
+        printf("\n\nArtista não encontrado!\n\n");
+    } else {
+        art->status = False; 
+        regravar_Artista(art);
+    }
+    free(art); 
+    free(id);  
 }
+
 
 char menu_Artista(void) {
     char op;
@@ -122,31 +122,31 @@ Artista* tela_cadastrar_Artista(void) {
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");    
     do {
-	    printf("///            ID (apenas números):    ");
-	    scanf("%[^\n]", art->id);
-	    getchar();
+        printf("///            ID (apenas números):    ");
+        scanf("%11[0-9]", art->id);  // Limita a 11 caracteres para o ID
+        getchar();
     } while (!validarID(art->id)); 
-	printf("///            Nome completo:          ");
-	scanf("%[^\n]", art->nome);
-	getchar();
-	printf("///            E-mail:                 ");
-	scanf("%[^\n]", art->email);
-	getchar();
-	printf("///           Celular  (apenas números com DDD): ");
-	scanf("%[^\n]", art->celular);
-	getchar();
-   do {
-	printf("///            Cargo:                  ");
-	scanf("%[^\n]", art->cargo);
-	getchar();
-   } while(!validarCargo(art->cargo));
-	art->status = True;
-	printf("///                                                                        ///\n");
-	printf("///                                                                        ///\n");
-	printf("//////////////////////////////////////////////////////////////////////////////\n");
-	printf("\n");  
-	delay(1);
-	return art;
+    printf("///            Nome completo:          ");
+    scanf("%[^\n]", art->nome);
+    getchar();
+    printf("///            E-mail:                 ");
+    scanf("%[^\n]", art->email);
+    getchar();
+    printf("///           Celular  (apenas números com DDD): ");
+    scanf("%[^\n]", art->celular);
+    getchar();
+    do {
+        printf("///            Cargo:                  ");
+        scanf("%[^\n]", art->cargo);
+        getchar();
+    } while(!validarCargo(art->cargo));
+    art->status = True;
+    printf("///                                                                        ///\n");
+    printf("///                                                                        ///\n");
+    printf("//////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");  
+    delay(1);
+    return art;
 }
 
 
@@ -162,7 +162,7 @@ char* tela_consultar_Artista(void) {
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     printf("///            Informe o ID (apenas números):    ");
-    scanf("%[0-9]", id);
+    scanf("%11[0-9]", id); 
     getchar();
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
@@ -185,7 +185,7 @@ char* tela_alterar_Artista(void) {
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     printf("///            Informe o ID (apenas números):    ");
-    scanf("%[0-9]", id);
+    scanf("%11[0-9]", id); 
     getchar();
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
@@ -208,7 +208,7 @@ char* tela_excluir_Artista(void) {
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     printf("///            Informe o ID (apenas números):    ");
-    scanf("%[0-9]", id);
+    scanf("%11[0-9]", id); 
     getchar();
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
@@ -238,34 +238,34 @@ void tela_Erro_Arquivo_Artista(void) {
     exit(1);
 }
 
+
 void gravar_Artista(Artista* art) {
-	FILE* fp;
-	fp = fopen("artistas.dat", "ab");
-	if (fp == NULL) {
-		tela_Erro_Arquivo_Artista();
-	}
-	fwrite(art, sizeof(Artista), 1, fp);
-	fclose(fp);
+    FILE* fp;
+    fp = fopen("artistas.dat", "ab");
+    if (fp == NULL) {
+        tela_Erro_Arquivo_Artista();
+    }
+    fwrite(art, sizeof(Artista), 1, fp);
+    fclose(fp);
 }
 
-
 Artista* buscar_Artista(char* id) {
-	FILE* fp;
-	Artista* art;
-
-	art = (Artista*) malloc(sizeof(Artista));
-	fp = fopen("artistas.dat", "rb");
-	if (fp == NULL) {
-		tela_Erro_Arquivo_Artista();
-	}
-	while(fread(art, sizeof(Artista), 1, fp)) {
-		if ((strcmp(art->id, id) == 0) && (art->status == True)) {
-			fclose(fp);
-			return art;
-		}
-	}
-	fclose(fp);
-	return NULL;
+    FILE* fp;
+    Artista* art;
+    art = (Artista*) malloc(sizeof(Artista));
+    fp = fopen("artistas.dat", "rb");
+    if (fp == NULL) {
+        tela_Erro_Arquivo_Artista();
+    }
+    while(fread(art, sizeof(Artista), 1, fp)) {
+        if ((strcmp(art->id, id) == 0) && (art->status == True)) {
+            fclose(fp);
+            return art;
+        }
+    }
+    fclose(fp);
+    free(art);  
+    return NULL;
 }
 
 
