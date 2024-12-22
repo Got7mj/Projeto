@@ -22,6 +22,14 @@ void modulo_Relatorio(void) {
 		    break;
             case '4':  listar_Usuarios(); 
                 break;
+	   case '5':  listar_Artistas_Com_Filtro();
+		    break;
+            case '6':  listar_Espetaculos_Com_Filtro(); 
+		    break;
+            case '7':  listar_Ingressos_Com_Filtro(); 
+		    break;
+            case '8':  listar_Usuarios_Com_Filtro(); 
+                break;
         } 
     } while (opcao != '0');
 }
@@ -41,6 +49,10 @@ char menu_Relatorio(void) {
     printf("///           2. Listar Espetáculos                                       ///\n");
     printf("///           3. Listar Ingressos                                         ///\n");
     printf("///           4. Listar Usuarios                                          ///\n");
+    printf("///           5. Listar Artistas com Filtro                               ///\n");
+    printf("///           6. Listar Espetáculos com Filtro                            ///\n");
+    printf("///           7. Listar Ingressos com Filtro                              ///\n");
+    printf("///           8. Listar Usuarios com Filtro                               ///\n");	
     printf("///           0. Voltar ao menu anterior                                  ///\n");
     printf("///                                                                       ///\n");
     printf("///           Escolha a opção desejada: ");
@@ -259,7 +271,7 @@ void listar_Espetaculos_Com_Filtro(void) {
     free(est);
 }
 
-void listar_IngressosComFiltro(void) {
+void listar_Ingressos_Com_Filtro(void) {
     FILE *fp;
     Ingresso *igs;    
     fp = fopen("ingressos.dat", "rb");
