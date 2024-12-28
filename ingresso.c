@@ -15,7 +15,7 @@ void modulo_Ingresso(void) {
                         break;
             case '2':  reembolsar_Ingresso();
                         break; 
-            case '3':  exibir_Ingressos_Vendidos();
+            case '3':  Ingressos_Vendidos();
                         break;                       
         }        
     } while (opcao != '0');
@@ -53,7 +53,7 @@ void reembolsar_Ingresso(void) {
 	if (igs == NULL) {     
 		printf("\n\nIngresso não encontrado!\n\n");
 	} else {
-		exibir_Ingresso_Vendidos(igs);
+		exibir_Ingressos_Vendidos(igs);
 		printf("Digite a quantidade de ingressos que deseja reembolsar: ");
 		if (scanf("%d", &quantidade) != 1 || quantidade <= 0 || quantidade > igs->quantidade) {
 			printf("Quantidade inválida! Você não pode reembolsar mais ingressos do que comprou.\n");
@@ -75,6 +75,32 @@ void reembolsar_Ingresso(void) {
         regravar_Ingresso(igs);
     }
 	free(id);
+}
+
+
+void Ingressos_Vendidos() {
+    FILE* fp = fopen("ingressos.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro ao abrir o arquivo de ingressos.\n");
+        return;
+    }
+    Ingresso igs;
+    int encontrado = 0;
+    printf("\n= = = Ingressos Vendidos = = =\n");
+    while (fread(&igs, sizeof(Ingresso), 1, fp)) {
+        if (igs.status == 1) { // 1 para ativo/vendido
+            printf("ID: %s\n", igs.id);
+            printf("Preço: %.2f\n", igs.preco);
+            printf("Quantidade: %d\n", igs.quantidade);
+            printf("Status: %s\n", (igs.status == 1) ? "Ativo" : "Inativo");
+            printf("----------------------------\n");
+            encontrado = 1;
+        }
+    }
+    if (!encontrado) {
+        printf("Nenhum ingresso vendido encontrado.\n");
+    }
+    fclose(fp);
 }
 
 
@@ -160,7 +186,7 @@ char* tela_reembolsar_Ingresso(void) {
     return id;
 }
 
-char* tela_exibir_Ingressos_Vendidos() {
+char* tela_Ingressos_Vendidos() {
     FILE* fp;
     Ingresso* igs = (Ingresso*) malloc(sizeof(Ingresso));
     limpaTela();
@@ -220,54 +246,44 @@ void gravar_Ingresso(Ingresso *igs) {
     fclose(fp);    
 }
 
+
 Ingresso* buscar_Ingresso(char* id) {
     FILE* fp;
-    Ingresso* igs = (Ingresso*) malloc(sizeof(Ingresso));  
-    if (igs == NULL) {
-        tela_Erro_Arquivo_Ingresso();
-    }
+    Ingresso igs;  
     fp = fopen("ingressos.dat", "rb");
     if (fp == NULL) {
         tela_Erro_Arquivo_Ingresso();
+        return NULL;
     }
-    while(fread(igs, sizeof(Ingresso), 1, fp)) {
-        if (strcmp(igs->id, id) == 0 && igs->status == True) {
+    while(fread(&igs, sizeof(Ingresso), 1, fp)) {
+        if (strcmp(igs.id, id) == 0 && igs.status == True) {
             fclose(fp);
-            return igs;
+            Ingresso* resultado = (Ingresso*) malloc(sizeof(Ingresso));
+            *resultado = igs;  
+            return resultado;
         }
     }
     fclose(fp);
-    free(igs);  
     return NULL;
 }
 
-void exibir_Ingressos_Vendidos(void) {
-    char* id;
-    Ingresso* igs;
-    
-    id = (char*) malloc(12 * sizeof(char));
-    if (id == NULL) {
-        printf("Erro de alocação de memória.\n");
-        return;
-    }
 
-    id = tela_reembolsar_Ingresso();  
-    igs = buscar_Ingresso(id);
-
+void exibir_Ingressos_Vendidos(Ingresso* igs) {
     if (igs == NULL) {
         printf("\n= = = Ingresso Inexistente = = =\n");
     } else {
         printf("\n= = = Ingresso Cadastrado = = =\n");
         printf("ID: %s\n", igs->id);
-        printf("Preço: %.2f\n", igs->preco);  // Exibe o preço
+        printf("Preço: %.2f\n", igs->preco);  
         printf("Quantidade: %d\n", igs->quantidade);  
         printf("Status: %s\n", (igs->status == True) ? "Ativo" : "Inativo");
     }
 
-    free(id);
     printf("\n\nTecle ENTER para continuar!\n\n");
-    getchar(); 
+    getchar();  
 }
+
+
 
 void regravar_Ingresso(Ingresso* igs) {
 	FILE* fp = fopen("ingressos.dat", "r+b");
@@ -290,4 +306,3 @@ void regravar_Ingresso(Ingresso* igs) {
 	fclose(fp);
 	free(igs_Lido); 
 }
-
