@@ -5,7 +5,6 @@
 #include "biblioteca.h"
 
 
-
 typedef struct artista Artista;
 
 /// Funções do Módulo  
