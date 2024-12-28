@@ -28,7 +28,7 @@ void modulo_Usuario(void) {
 
 
 void cadastrar_Usuario(void) {
-	Usuario *usr;
+	Usuario* usr;
 	usr = tela_cadastrar_Usuario();
 	gravar_Usuario(usr);
 	free(usr);
@@ -47,39 +47,36 @@ void consultar_Usuario(void) {
 
 
 void alterar_Usuario(void) {
-	Usuario* usr;
-	char* id = NULL;
-	id = tela_alterar_Usuario();
-	usr = buscar_Usuario(id);
-	if (usr == NULL) {
-		printf("\n\nUsuario não encontrado!\n\n");
-	} else {
-		usr = tela_cadastrar_Usuario();
-		strcpy(usr->id, id);
-		regravar_Usuario(usr);
-		// Outra opção:
-		// excluir_Usuario(id);
-		// gravar_Usuario(usr);
-		free(usr);
-	}
-	free(id);
-}
+    Usuario* usr;
+    char* id = NULL;
+    id = tela_alterar_Usuario();
+    usr = buscar_Usuario(id);
+    if (usr == NULL) {
+        printf("\n\nUsuario não encontrado!\n\n");
+        } else {
+            usr = tela_cadastrar_Usuario();
+            strcpy(usr->id, id);
+            regravar_Usuario(usr);
+            free(usr);
+            }
+            free(id);
+            }
 
 void excluir_Usuario(void) {
-	Usuario* usr;
+    Usuario* usr;
 	char* id;
 	id = tela_excluir_Usuario();
 	usr = (Usuario*) malloc(sizeof(Usuario));
 	usr = buscar_Usuario(id);
 	if (usr == NULL) {
-		printf("\n\nUsuario não encontrado!\n\n");
-	} else {
-		usr->status = False;
-		regravar_Usuario(usr);
-		free(usr);
-	}
-	free(id);
-}
+	    printf("\n\nUsuario não encontrado!\n\n");
+	    } else {
+	        usr->status = False;
+	        regravar_Usuario(usr);
+	        free(usr);
+	        }
+	        free(id);
+	        }
 
 
 
@@ -244,7 +241,7 @@ void tela_Erro_Arquivo_Usuario(void) {
     exit(1);
 }
 
-void gravar_Usuario(Usuario *usr) {
+void gravar_Usuario(Usuario* usr) {
 	FILE* fp;
 	fp = fopen("usuarios.dat", "ab");
 	if (fp == NULL) {
@@ -275,11 +272,10 @@ Usuario* buscar_Usuario(char* id) {
 
 
 void exibir_Usuario(Usuario* usr) {
-
-	if (usr == NULL) {
-		printf("\n= = = Usuario Inexistente = = =\n");
+    if (usr == NULL) {
+        printf("\n= = = Usuario Inexistente = = =\n");
 	} else {
-		printf("\n= = = Usuario Cadastrado = = =\n");
+	    printf("\n= = = Usuario Cadastrado = = =\n");
 		printf("Id do usuario: %s\n", usr->id);
 		printf("Nome do usuario: %s\n", usr->nome);
 		printf("Email do usuario: %s\n", usr->email);
@@ -300,19 +296,16 @@ void regravar_Usuario(Usuario* usr) {
 	usr_Lido = (Usuario*) malloc(sizeof(Usuario));
 	fp = fopen("usuarios.dat", "r+b");
 	if (fp == NULL) {
-		tela_Erro_Arquivo_Usuario();
-	}
-	// while(!feof(fp)) {
-	achou = False;
-	while(fread(usr_Lido, sizeof(Usuario), 1, fp) && !achou) {
-		//fread(usr_Lido, sizeof(Usuario), 1, fp);
-		if (strcmp(usr_Lido->id, usr->id) == 0) {
-			achou = True;
-			fseek(fp, -1*sizeof(Usuario), SEEK_CUR);
-        	fwrite(usr, sizeof(Usuario), 1, fp);
-			//break;
-		}
-	}
-	fclose(fp);
-	free(usr_Lido);
-}
+	    tela_Erro_Arquivo_Usuario();
+	    }
+	    achou = False;
+	    while(fread(usr_Lido, sizeof(Usuario), 1, fp) && !achou) {
+	        if (strcmp(usr_Lido->id, usr->id) == 0) {
+	            achou = True;
+	            fseek(fp, -1*sizeof(Usuario), SEEK_CUR);
+	            fwrite(usr, sizeof(Usuario), 1, fp);
+	            }
+	        }
+	        fclose(fp);
+	        free(usr_Lido);
+	    }
