@@ -237,7 +237,7 @@ void tela_Erro_Arquivo_Ingresso(void) {
     exit(1);
 }
 
-void gravar_Ingresso(Ingresso *igs) {
+void gravar_Ingresso(Ingresso* igs) {
     FILE* fp = fopen("ingressos.dat", "ab");
     if (fp == NULL) {
         tela_Erro_Arquivo_Ingresso();
