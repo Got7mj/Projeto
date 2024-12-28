@@ -25,7 +25,7 @@ void modulo_Espetaculo(void) {
 
 
 void cadastrar_Espetaculo(void) {
-	Espetaculo *est;
+	Espetaculo* est;
 	est = tela_cadastrar_Espetaculo();
 	gravar_Espetaculo(est);
 	free(est);
@@ -227,7 +227,7 @@ void tela_Erro_Arquivo_Espetaculo(void) {
     exit(1);
 }
 
-void gravar_Espetaculo(Espetaculo *est) {
+void gravar_Espetaculo(Espetaculo* est) {
 	FILE* fp;
 	fp = fopen("espetaculos.dat", "ab");
 	if (fp == NULL) {
