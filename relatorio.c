@@ -79,7 +79,7 @@ void listar_Artistas(void) {
         printf("////////////////////////////////////////////////////////////////////////////\n");
         printf("///                        Lista de Artistas                              ///\n");
         printf("/////////////////////////////////////////////////////////////////////////////\n");
-        printf("ID: %d\n", art->id);  
+        printf("ID: %s\n", art->id);  
         printf("Nome: %s\n", art->nome); 
         printf("Email: %s\n", art->email);  
         printf("Celular: %s\n", art->celular);  
@@ -104,7 +104,7 @@ void listar_Espetaculos(void) {
         printf("///////////////////////////////////////////////////////////////////////////////\n");
         printf("///                        Lista de Espetáculos                            ///\n");
         printf("///////////////////////////////////////////////////////////////////////////////\n");
-        printf("ID: %d\n", est->id);  
+        printf("ID: %s\n", est->id);  
         printf("Data: %s\n", est->data);  
         printf("Horario: %s\n", est->horario);  
         printf("-------------------------------------------------\n");
@@ -127,7 +127,7 @@ void listar_Ingressos(void) {
         printf("///////////////////////////////////////////////////////////////////////////////\n");
         printf("///                        Lista de Ingressos                             ///\n");
         printf("///////////////////////////////////////////////////////////////////////////////\n");
-        printf("ID: %d\n", igs->id);  
+        printf("ID: %s\n", igs->id);  
         printf("Quantidade: %d\n", igs->quantidade);  
         printf("Preço: %.2f\n", igs->preco);  
         printf("-------------------------------------------------\n");
@@ -150,11 +150,11 @@ void listar_Usuarios(void) {
         printf("///////////////////////////////////////////////////////////////////////////////\n");
         printf("///                        Lista de Usuários                               ///\n");
         printf("///////////////////////////////////////////////////////////////////////////////\n");
-        printf("ID: %d\n", usr->id);  
+        printf("ID: %s\n", usr->id);  
         printf("Nome: %s\n", usr->nome);  
         printf("E-mail: %s\n", usr->email);  
         printf("Celular: %s\n", usr->celular);  
-        printf("Nasc: %d\n", usr->nasc);  
+        printf("Nasc: %s\n", usr->nasc);  
         printf("-------------------------------------------------\n");
     }
     fclose(fp);
@@ -162,6 +162,7 @@ void listar_Usuarios(void) {
 }
 
 void listar_Artistas_Com_Filtro(void) {
+    char nome_filtro[50];
     FILE *fp;
     Artista *art;
     fp = fopen("artistas.dat", "rb");
@@ -176,7 +177,7 @@ void listar_Artistas_Com_Filtro(void) {
 	nome_filtro[strcspn(nome_filtro, "\n")] = '\0';  
 	while (fread(art, sizeof(Artista), 1, fp)) {
 		if (strstr(art->nome, nome_filtro)) {
-			printf("ID: %d\n", art->id);
+			printf("ID: %s\n", art->id);
 			printf("Nome: %s\n", art->nome);
 			printf("Email: %s\n", art->email);
 			printf("Celular: %s\n", art->celular);
@@ -190,6 +191,7 @@ void listar_Artistas_Com_Filtro(void) {
 
 
 void listar_Espetaculos_Com_Filtro(void) {
+    char data_filtro[50];
     FILE *fp;
     Espetaculo *est;
     fp = fopen("espetaculos.dat", "rb");
@@ -200,7 +202,7 @@ void listar_Espetaculos_Com_Filtro(void) {
     est = (Espetaculo*)malloc(sizeof(Espetaculo));
 	while (fread(est, sizeof(Espetaculo), 1, fp)) {
                 if (strcmp(est->data, data_filtro) == 0) {
-                    printf("ID: %d\n", est->id);
+                    printf("ID: %s\n", est->id);
                     printf("Data: %s\n", est->data);
                     printf("Horario: %s\n", est->horario);
                     printf("-------------------------------------------------\n");
@@ -219,7 +221,7 @@ void listar_Ingressos_Com_Filtro(void) {
         return;
     }
     while (fread(&igs, sizeof(Ingresso), 1, fp)) {
-	    if (igs.quantidade > 10) {  
+	    if (igs->quantidade > 10) {  
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///             Lista de Ingressos (Com Filtro - Quantidade > 10)           ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -234,6 +236,7 @@ void listar_Ingressos_Com_Filtro(void) {
 
 
 void listar_Usuarios_Com_Filtro(void) {
+    char nome_filtro[50];
     FILE *fp;
     Usuario *usr;
        
@@ -250,11 +253,11 @@ void listar_Usuarios_Com_Filtro(void) {
 	nome_filtro[strcspn(nome_filtro, "\n")] = '\0';  
 	while (fread(usr, sizeof(Usuario), 1, fp)) {
 		if (strstr(usr->nome, nome_filtro)) {
-			printf("ID: %d\n", usr->id);
+			printf("ID: %s\n", usr->id);
 			printf("Nome: %s\n", usr->nome);
 			printf("E-mail: %s\n", usr->email);
 			printf("Celular: %s\n", usr->celular);
-			printf("Nasc: %d\n", usr->nasc);
+			printf("Nasc: %s\n", usr->nasc);
 			printf("-------------------------------------------------\n");
 		}
 	}	
