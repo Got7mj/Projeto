@@ -24,5 +24,5 @@ void relat_Ingressos_por_Espetaculo(char*);
 void relat_Artistas_por_Espetaculo(char*);
 void relat_Ingressos_por_Usuario(char*);
 
-void listaTurmasPorHorario(char*);
+v
 char* getNomeUsuario(char*);
