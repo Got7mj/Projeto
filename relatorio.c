@@ -241,7 +241,7 @@ void listar_Artistas_Com_Filtro(void) {
 
 
 void listar_Espetaculos_Com_Filtro(void) {
-    char data_filtro[50];
+    char id_filtro[50];
     FILE *fp;
     Espetaculo *est;
     fp = fopen("espetaculos.dat", "rb");
@@ -271,7 +271,7 @@ void listar_Ingressos_Com_Filtro(void) {
         return;
     }
     while (fread(&igs, sizeof(Ingresso), 1, fp)) {
-	    if (igs->quantidade > 10) {  
+	   // if (igs->quantidade > 10) {  
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///             Lista de Ingressos (Com Filtro - Quantidade > 10)           ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
