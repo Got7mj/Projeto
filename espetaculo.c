@@ -92,7 +92,7 @@ char menu_Espetaculo(void) {
     printf("///            0. Voltar ao menu anterior                                   ///\n");
     printf("///                                                                         ///\n");
     printf("///            Escolha a opção desejada:          ");
-    scanf("%c", &op);
+    scanf(" %c", &op);
     getchar();
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
@@ -116,17 +116,22 @@ Espetaculo* tela_cadastrar_Espetaculo(void) {
     printf("///                                                                         ///\n");
 do {
     printf("///            ID (apenas números):    ");
-    scanf("%[^\n]", est->id);
+    scanf(" %[^\n]", est->id);
     getchar();
-} while(!validarID(est->id)); 
+} while(!validarID(est->id));
+do{	
+    printf("///            Nome completo:          ");
+    scanf(" %[^\n]", est->nome);
+    getchar();
+} while(!validarNome(est->nome));
 do {	
     printf("///            Data (dd/mm/aaaa):      ");
-    scanf("%[^\n]", est->data);
+    scanf(" %[^\n]", est->data);
     getchar();
 } while(!validarData(est->data));
 do {
     printf("///            Horário (hh/mm/ss):     ");
-    scanf("%[^\n]", est->horario);
+    scanf(" %[^\n]", est->horario);
     getchar();
 } while(!validarHorario(est->horario)); 
     est->status = True;
@@ -151,7 +156,7 @@ char* tela_consultar_Espetaculo(void) {
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     printf("///            Informe o ID (apenas números):     ");
-    scanf("%[0-9]", id);
+    scanf(" %[0-9]", id);
     getchar();
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
@@ -174,7 +179,7 @@ char* tela_alterar_Espetaculo(void) {
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     printf("///            Informe o ID (apenas números):    ");
-    scanf("%[0-9]", id);
+    scanf(" %[0-9]", id);
     getchar();
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
@@ -197,7 +202,7 @@ char* tela_excluir_Espetaculo(void) {
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     printf("///            Informe o ID (apenas números):     ");
-    scanf("%[0-9]", id);
+    scanf(" %[0-9]", id);
     getchar();
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
@@ -262,6 +267,7 @@ void exibir_Espetaculo(Espetaculo* est) {
 	} else {
 		printf("\n= = = Espetaculo Cadastrado = = =\n");
 		printf("Id: %s\n", est->id);
+		printf("Nome: %s\n", est->nome);
 		printf("Data: %s\n", est->data);
 		printf("Horario: %s\n", est->horario);		
 		printf("Status: %d\n", est->status);
