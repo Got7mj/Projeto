@@ -21,30 +21,20 @@ void modulo_Ingresso(void) {
     } while (opcao != '0');
 }
 
-float precoPorIngresso = 5.0; // Preço de cada ingresso alterado para R$ 5,00
+
 int ingressosVendidos = 0;
 
 void comprar_Ingresso(void) {
     int quantidade;
-    float total;
+    float preco, total;
     Ingresso* igs;
     igs = tela_comprar_Ingresso();
     gravar_Ingresso(igs);
     free(igs);
-	printf("Digite a quantidade de ingressos que deseja comprar: ");
-	if (scanf("%d", &quantidade) != 1 || quantidade <= 0) {
-		printf("Quantidade inválida! Por favor, insira um número positivo.\n");
-		while(getchar() != '\n');  
-		return;
-	}   
-
-    ingressosVendidos += quantidade;
-    total = quantidade * precoPorIngresso;
-    printf("Total a pagar: R$ %.2f\n", total);
 }
 
 void reembolsar_Ingresso(void) {
-    Ingresso *igs;
+    Ingresso* igs;
     char* id = NULL;
     int quantidade;
     float reembolso;
@@ -62,7 +52,7 @@ void reembolsar_Ingresso(void) {
 		}
 
         // Calcula o valor do reembolso
-        reembolso = quantidade * precoPorIngresso;
+         reembolso = quantidade * igs->preco;
         
         // Atualiza a quantidade de ingressos vendidos
         ingressosVendidos -= quantidade;
@@ -84,15 +74,15 @@ void Ingressos_Vendidos() {
         printf("Erro ao abrir o arquivo de ingressos.\n");
         return;
     }
-    Ingresso igs;
+    Ingresso igs;  // Agora é uma variável, não um ponteiro
     int encontrado = 0;
     printf("\n= = = Ingressos Vendidos = = =\n");
     while (fread(&igs, sizeof(Ingresso), 1, fp)) {
-        if (igs.status == 1) { // 1 para ativo/vendido
-            printf("ID: %s\n", igs.id);
-            printf("Preço: %.2f\n", igs.preco);
-            printf("Quantidade: %d\n", igs.quantidade);
-            printf("Status: %s\n", (igs.status == 1) ? "Ativo" : "Inativo");
+        if (igs->status == 1) { // 1 para ativo/vendido
+            printf("ID: %s\n", igs->id);
+            printf("Preço: %.2f\n", igs->preco);
+            printf("Quantidade: %d\n", igs->quantidade);
+            printf("Status: %s\n", (igs->status == 1) ? "Ativo" : "Inativo");
             printf("----------------------------\n");
             encontrado = 1;
         }
@@ -102,6 +92,7 @@ void Ingressos_Vendidos() {
     }
     fclose(fp);
 }
+
 
 
 char menu_Ingresso(void) {
@@ -142,17 +133,17 @@ Ingresso* tela_comprar_Ingresso(void) {
     printf("///                                                                         ///\n");
     do {
         printf("///            ID (apenas números):    ");
-        scanf("%11s", igs->id);  
+        scanf(" %11s", igs->id);  
         getchar();  
     } while(!validarID(igs->id)); 
     do {
         printf("///            Preço (apenas números):    ");
-        scanf("%f", &igs->preco);  // Alterado para tipo float
+        scanf(" %f", &igs->preco);  // Alterado para tipo float
         getchar();
     } while(!validarPreco(igs->preco)); 
     do {    
         printf("///            Quantidade (apenas números):     ");
-        scanf("%d", &igs->quantidade);  
+        scanf(" %d", &igs->quantidade);   
         getchar();
     } while (!validarQuantidade(igs->quantidade));
     igs->status = True;
