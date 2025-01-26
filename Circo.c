@@ -110,7 +110,7 @@ char menu_principal(void) {
     printf("///            0. Sair                                                      ///\n");
     printf("///                                                                         ///\n");
     printf("///            Escolher a opção desejada: ");  
-    scanf("%c", &op);
+    scanf(" %c", &op);
     getchar();
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
