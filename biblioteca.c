@@ -112,15 +112,29 @@ int validarEmail(char* email) {
 /////////////////// Valida Celular ///////////////////////
 /// Autor: https://github.com/rauan-meirelles
 
-void validarCelular(char **celular, int tamanho) {
-    int tam;
+int validarCelular(char **celular, int tamanho) {
     for (int i = 0; i < tamanho; i++) {
-        tam = strlen(celular[i]);
+        int tam = strlen(celular[i]);
+
+        // Verifica se o número de celular tem o comprimento correto (exemplo: 11 dígitos)
+        if (tam != 11) {
+            return 0; // Número de celular inválido
+        }
+
+        // Verifica se o número contém apenas dígitos
         for (int j = 0; j < tam; j++) {
-            if (!Digito(celular[i][j])) {
+            // Verifica se o caractere é um dígito (entre '0' e '9')
+            if (celular[i][j] < '0' || celular[i][j] > '9') {
+                return 0; // Contém caracteres não numéricos
             }
         }
+
+        // Verifica se o número começa com '9' (para celular no Brasil)
+        if (celular[i][0] != '9') {
+            return 0; // Número não começa com '9'
+        }
     }
+    return 1; // Todos os números são válidos
 }
 
 
@@ -235,8 +249,8 @@ int validarCargo(char* cargo) {
     if (cargo == NULL || strlen(cargo) == 0) {
         return 0; // Cargo inválido
     }
-    // Verifica o comprimento máximo (por exemplo, 27 caracteres)
-    if (strlen(cargo) > 27) {
+    // Verifica o comprimento máximo (por exemplo, 20 caracteres)
+    if (strlen(cargo) > 20) {
         return 0; 
     }
     // Verifica se contém caracteres inválidos (exemplo: números ou caracteres especiais)
