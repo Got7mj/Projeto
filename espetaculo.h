@@ -2,6 +2,7 @@ typedef struct espetaculo Espetaculo;
 
 struct espetaculo {
 char id[12];
+char nome[21]; 
 char data[12];
 char horario[9];
 int status;
