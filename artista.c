@@ -98,7 +98,7 @@ char menu_Artista(void) {
     printf("///            0. Voltar ao menu anterior                                   ///\n");
     printf("///                                                                         ///\n");
     printf("///            Escolha a opção desejada:   ");
-    scanf("%c", &op);
+    scanf(" %c", &op);
     getchar();
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
