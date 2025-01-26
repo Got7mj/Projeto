@@ -97,7 +97,7 @@ char menu_Usuario(void) {
     printf("///            0. Voltar ao menu anterior                                   ///\n");
     printf("///                                                                         ///\n");
     printf("///            Escolha a opção desejada:   ");
-    scanf("%c", &op);
+    scanf(" %c", &op);
     getchar();
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
@@ -120,27 +120,27 @@ Usuario* tela_cadastrar_Usuario(void) {
 	printf("///                                                                         ///\n");  	
 	do {
 		printf("///            ID (apenas números):    ");
-		scanf("%[^\n]", usr->id);
+		scanf(" %[^\n]", usr->id);
 		getchar();
 	} while (!validarID(usr->id));
 	do {
 		printf("///            Nome completo:          ");
-		scanf("%[^\n]", usr->nome);
+		scanf(" %[^\n]", usr->nome);
 		getchar();
 	} while (!validarNome(usr->nome));
 	do {
 		printf("///            E-mail:                 ");
-		scanf("%[^\n]", usr->email);
+		scanf(" %[^\n]", usr->email);
 		getchar();
 	} while (!validarEmail(usr->email));
 	do {
 		printf("///           Celular  (apenas números com DDD): ");
-		scanf("%[^\n]", usr->celular);
+		scanf(" %[^\n]", usr->celular);
 		getchar();
 	} while (!validarCelular(usr->celular));
 	do {
 		printf("///           Data de Nascimento (dd/mm/aaaa):  ");
-		scanf("%[^\n]", usr->nasc);
+		scanf(" %[^\n]", usr->nasc);
 		getchar();
 	} while (!validarNasc(usr->nasc));
 	usr->status = True;
@@ -165,7 +165,7 @@ char* tela_consultar_Usuario(void) {
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     printf("///            Informe o ID (apenas números):    ");
-    scanf("%[0-9]", id);
+    scanf(" %[0-9]", id);
     getchar();
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
@@ -188,7 +188,7 @@ char* tela_alterar_Usuario(void) {
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     printf("///            Informe o ID (apenas números):    ");
-    scanf("%[0-9]", id);
+    scanf(" %[0-9]", id);
     getchar();
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
@@ -211,7 +211,7 @@ char* tela_excluir_Usuario(void) {
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     printf("///            Informe o ID (apenas números):    ");
-    scanf("%[0-9]", id);
+    scanf(" %[0-9]", id);
     getchar();
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
