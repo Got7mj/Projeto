@@ -127,22 +127,22 @@ Artista* tela_cadastrar_Artista(void) {
     } while (!validarID(art->id)); 
 	do{	
 		printf("///            Nome completo:          ");
-		scanf("%[^\n]", art->nome);
+		scanf(" %[^\n]", art->nome);
 		getchar();
 	} while(!validarNome(art->nome));
 	do{
 		printf("///            E-mail:                 ");
-		scanf("%[^\n]", art->email);
+		scanf(" %[^\n]", art->email);
 		getchar();
 	} while(!validarEmail(art->email));
 	do {
 		printf("///           Celular  (apenas números com DDD): ");
-		scanf("%[^\n]", art->celular);
+		scanf(" %[^\n]", art->celular);
 		getchar();
 	} while (!validarCelular(art->celular));
 	do{
 		printf("///            Cargo:                  ");
-		scanf("%[^\n]", art->cargo);
+		scanf(" %[^\n]", art->cargo);
 		getchar();
 	} while(!validarCargo(art->cargo));
     art->status = True;
@@ -167,7 +167,7 @@ char* tela_consultar_Artista(void) {
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     printf("///            Informe o ID (apenas números):    ");
-    scanf("%11[0-9]", id); 
+    scanf(" %11[0-9]", id); 
     getchar();
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
@@ -190,7 +190,7 @@ char* tela_alterar_Artista(void) {
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     printf("///            Informe o ID (apenas números):    ");
-    scanf("%11[0-9]", id); 
+    scanf(" %11[0-9]", id); 
     getchar();
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
@@ -213,7 +213,7 @@ char* tela_excluir_Artista(void) {
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     printf("///            Informe o ID (apenas números):    ");
-    scanf("%11[0-9]", id); 
+    scanf(" %11[0-9]", id); 
     getchar();
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
