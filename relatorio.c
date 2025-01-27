@@ -163,6 +163,7 @@ void listar_Usuarios(void) {
     free(usr);
 }
 
+
 void listar_Artistas_Com_Filtro(void) {
     char nome_filtro[50];
     FILE *fp;
@@ -193,7 +194,7 @@ void listar_Artistas_Com_Filtro(void) {
 
 
 void listar_Espetaculos_Com_Filtro(void) {
-    char id_filtro[50];	z
+    char id_filtro[12];	
     FILE *fp;
     Espetaculo *est;
     fp = fopen("espetaculos.dat", "rb");
@@ -201,9 +202,13 @@ void listar_Espetaculos_Com_Filtro(void) {
         printf("Erro ao abrir arquivo de espetáculos.\n");
         return;
     }
-    est = (Espetaculo*)malloc(sizeof(Espetaculo));
-	while (fread(est, sizeof(Espetaculo), 1, fp)) {
-                if (strcmp(est->data, data_filtro) == 0) {
+	est = (Espetaculo*)malloc(sizeof(Espetaculo));
+    printf("Digite o ID do Espetáculo: ");
+    getchar();  
+    fgets(id_filtro, 12, stdin);  
+    id_filtro[strcspn(id_filtro, "\n")] = '\0';
+    	while (fread(est, sizeof(Espetaculo), 1, fp)) {
+                if (strcmp(est->id, id_filtro) == 0) {
                     printf("ID: %s\n", est->id);
 		    printf("Nome: %s\n", est->nome);
                     printf("Data: %s\n", est->data);
@@ -216,6 +221,7 @@ void listar_Espetaculos_Com_Filtro(void) {
 }
 
 void listar_Ingressos_Com_Filtro(void) {
+    char id_filtro[12];
     FILE *fp;
     Ingresso *igs;    
     fp = fopen("ingressos.dat", "rb");
@@ -223,18 +229,23 @@ void listar_Ingressos_Com_Filtro(void) {
         printf("Erro ao abrir arquivo de ingressos.\n");
         return;
     }
-    while (fread(&igs, sizeof(Ingresso), 1, fp)) {
-	   // if (igs->quantidade > 10) {  
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///             Lista de Ingressos (Com Filtro - Quantidade > 10)           ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("Id: %s\n", igs->id);
-    printf("Quantidade: %d\n", igs->quantidade);
-    printf("Preço: %.2f\n", igs->preco);
-    printf("-------------------------------------------------\n");
-	    }
+    igs = (Ingresso*)malloc(sizeof(Ingresso));  
+    printf("Digite o ID do Ingresso: ");
+    getchar();  
+    fgets(id_filtro, 12, stdin);  
+    id_filtro[strcspn(id_filtro, "\n")] = '\0';
+    while (fread(igs, sizeof(Ingresso), 1, fp)) {  
+        printf("/////////////////////////////////////////////////\n");
+        printf("///             Lista de Ingressos            ///\n");
+        printf("/////////////////////////////////////////////////\n");
+        printf("Id: %s\n", igs->id);
+        printf("Quantidade: %d\n", igs->quantidade);
+        printf("Preço: %.2f\n", igs->preco);
+        printf("-------------------------------------------------\n");
     }
-    fclose(fp);
+    
+    fclose(fp);  
+    free(igs);   
 }
 
 
@@ -242,28 +253,26 @@ void listar_Usuarios_Com_Filtro(void) {
     char nome_filtro[50];
     FILE *fp;
     Usuario *usr;
-       
-    fp = fopen("usuarios.dat", "rb");
+        fp = fopen("usuarios.dat", "rb");
     if (fp == NULL) {
         printf("Erro ao abrir arquivo de usuários.\n");
         return;
     }
-
-    usr = (Usuario*)malloc(sizeof(Usuario));
-	printf("Digite o Nome do Usuário: ");
-	getchar();  
-	fgets(nome_filtro, 50, stdin);
-	nome_filtro[strcspn(nome_filtro, "\n")] = '\0';  
-	while (fread(usr, sizeof(Usuario), 1, fp)) {
-		if (strstr(usr->nome, nome_filtro)) {
-			printf("ID: %s\n", usr->id);
-			printf("Nome: %s\n", usr->nome);
-			printf("E-mail: %s\n", usr->email);
-			printf("Celular: %s\n", usr->celular);
-			printf("Nasc: %s\n", usr->nasc);
-			printf("-------------------------------------------------\n");
-		}
-	}	
-	fclose(fp);
-	free(usr);
+    usr = (Usuario*)malloc(sizeof(Usuario));  
+    printf("Digite o Nome do Usuário: ");
+    getchar();  
+    fgets(nome_filtro, 50, stdin); 
+    nome_filtro[strcspn(nome_filtro, "\n")] = '\0'; 
+    while (fread(usr, sizeof(Usuario), 1, fp)) {  
+        if (strstr(usr->nome, nome_filtro)) {  
+            printf("ID: %s\n", usr->id);
+            printf("Nome: %s\n", usr->nome);
+            printf("E-mail: %s\n", usr->email);
+            printf("Celular: %s\n", usr->celular);
+            printf("Nasc: %s\n", usr->nasc);
+            printf("-------------------------------------------------\n");
+        }
+    }
+    fclose(fp);  
+    free(usr);   
 }
